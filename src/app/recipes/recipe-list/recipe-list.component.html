@@ -1,1 +1,34 @@
-<app-recipe-item></app-recipe-item>
+<section class="recipes">
+  <div class="recipes__container">
+    <a class="recipe-card" *ngFor="let recipe of recipes">
+      <img [src]="recipe.imagePath" alt="{{recipe.name}}">
+      <div class="recipe-card__description">
+        <h4 class="recipe-card__title">{{recipe.name}}</h4>
+        <p>{{recipe.description}}</p>
+      </div>
+    </a>
+    <a class="recipe-card" *ngFor="let recipe of recipes">
+      <img [src]="recipe.imagePath" alt="{{recipe.name}}">
+      <div class="recipe-card__description">
+        <h4 class="recipe-card__title">{{recipe.name}}</h4>
+        <p>{{recipe.description}}</p>
+      </div>
+    </a>
+    <a class="recipe-card" *ngFor="let recipe of recipes">
+      <img [src]="recipe.imagePath" alt="{{recipe.name}}">
+      <div class="recipe-card__description">
+        <h4 class="recipe-card__title">{{recipe.name}}</h4>
+        <p>{{recipe.description}}</p>
+      </div>
+    </a>
+    <a class="recipe-card" *ngFor="let recipe of recipes">
+      <img [src]="recipe.imagePath" alt="{{recipe.name}}">
+      <div class="recipe-card__description">
+        <h4 class="recipe-card__title">{{recipe.name}}</h4>
+        <p>{{recipe.description}}</p>
+      </div>
+    </a>
+  </div>
+</section>
+<button>New Recipe</button>
+
