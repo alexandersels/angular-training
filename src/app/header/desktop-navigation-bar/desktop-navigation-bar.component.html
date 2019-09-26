@@ -1,29 +1,32 @@
-<nav class="navbar">
-  <div class="navbar__wrapper">
-    <div class="navbar__title">
+<nav class="navbar-desktop">
+
+  <!--  Navigation Title-->
+  <div class="navbar-desktop__wrapper">
+    <div class="navbar-desktop__title">
       <strong>Recipe Book</strong>
     </div>
 
-    <div class="navbar__content">
-      <ul class="navbar__list">
-        <li class="navbar__item">
-          <a href="#" class="navbar__link">
-            <span>Recipes</span>
-          </a>
-        </li>
-        <li class="navbar__item">
-          <a href="#" class="navbar__link">
-            <span>Shopping List</span>
-          </a>
-        </li>
-      </ul>
-      <div class="menu">
-        <div class="menu__item">
-          <a href="#" class="menu__link">
-            <span>Configuration</span>
-            <i class="fas fa-chevron-up"></i>
-          </a>
-        </div>
+    <!--  Menu Items  -->
+    <ul class="navbar-desktop__menu-items">
+      <li class="navbar-desktop__menu-item">
+        <a href="#" class="navbar-desktop__link">
+          <span>Recipes</span>
+        </a>
+      </li>
+      <li class="navbar-desktop__menu-item">
+        <a href="#" class="navbar-desktop__link">
+          <span>Shopping List</span>
+        </a>
+      </li>
+    </ul>
+
+    <!--    Dropdown items  -->
+    <div class="navbar-desktop__menu-items navbar-desktop__menu-items--align-right">
+      <div class="navbar-desktop__menu-item navbar-desktop__menu-dropdown-item">
+        <a href="#" class="navbar-desktop__link">
+          <span>Configuration</span>
+          <i class="fas fa-chevron-up"></i>
+        </a>
         <ul class="dropdown">
           <li class="dropdown__item">
             <a href="" class="dropdown__link">
@@ -39,4 +42,5 @@
       </div>
     </div>
   </div>
+  <!--  </div>-->
 </nav>

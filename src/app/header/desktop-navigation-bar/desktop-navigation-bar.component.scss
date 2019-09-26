@@ -1,11 +1,15 @@
 @import 'main.scss';
 
-.navbar {
+.navbar-desktop {
   background-color: $color-primary;
   height: 5rem;
   width: 100%;
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: $bp-small) {
+    display: none;
+  }
 
   &__wrapper {
     display: flex;
@@ -28,37 +32,53 @@
     white-space: nowrap;
   }
 
-  &__content {
+  &__menu-items {
+    height: 100%;
     width: 100%;
+
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    &--align-right {
+      justify-content: flex-end;
+    }
+  }
+
+  &__menu-item {
     height: 100%;
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
 
-  &__list {
-    list-style: none;
-    display: flex;
-  }
-
-  &__options {
-    list-style: none;
-    display: flex;
-  }
-
-  &__item {
     padding: 1rem;
     margin-right: 1rem;
+
+    transition: all .1s;
+  }
+
+  &__menu-item--highlight {
+    &:hover {
+      background-color: $color-primary-light;
+    }
   }
 
   &__link {
+    display: flex;
+    align-items: center;
+
+    height: 100%;
+
     text-decoration: none;
     text-transform: uppercase;
+
     color: $color-white;
+
     font-size: $navigation-items-font-size;
     font-weight: 600;
     line-height: 2rem;
+
     border-bottom: 3px solid transparent;
 
     &:hover,
@@ -66,49 +86,22 @@
       border-bottom: 3px solid $color-primary-dark;
     }
   }
-}
 
-.menu {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  text-align: center;
-  position: relative;
+  &__menu-dropdown-item {
 
-
-  &__item {
-    padding: 1rem;
-    margin-right: 1rem;
-  }
-
-  &__link {
-    text-decoration: none;
-    text-transform: uppercase;
-    color: $color-white;
-    font-size: $navigation-items-font-size;
-    font-weight: 600;
-    line-height: 2rem;
-
-    span {
-      border-bottom: 3px solid transparent;
-    }
+    position: relative;
 
     i {
       margin-left: 1rem;
-      display: inline-block;
+    }
+
+    &:hover i {
+      transform: rotate(180deg);
     }
   }
 
-  &:hover .dropdown {
+  &__menu-dropdown-item:hover .dropdown {
     height: auto;
-  }
-
-  &:hover &__item &__link i {
-    transform: rotate(180deg);
-  }
-
-  &:hover &__item &__link span {
-    border-bottom: 3px solid $color-primary-dark;
   }
 }
 
@@ -131,7 +124,7 @@
 
   background-color: $color-primary-light;
   box-shadow: 0 1rem 3rem rgba($color-black, .3);
-  border:$color-grey-dark-2 solid 1;
+  border: $color-grey-dark-2 solid 1;
 
   transition: height .2s;
 
@@ -167,7 +160,6 @@
   &__link:visited {
     padding: 1rem 0;
     padding-left: 1rem;
-    display: inline-block;
     color: $color-white;
     text-decoration: none;
     text-transform: uppercase;
@@ -177,3 +169,6 @@
     cursor: pointer;
   }
 }
+
+
+

@@ -1,3 +1,53 @@
-<p>
-  mobile-navigation-bar works!
-</p>
+<nav class="navbar-mobile">
+
+  <div class="backdrop"
+       [ngClass]="{'backdrop--shown': sidebarDisplayed}"
+       (click)="closeSidebar()">
+  </div>
+
+  <div class="navbar-mobile__wrapper">
+
+    <div class="navbar-mobile__hamburger-button"
+         [ngClass]="{'navbar-mobile__hamburger-button--active': sidebarDisplayed}"
+         (click)="burgerMenuClicked()">
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+    </div>
+
+    <div class="navbar-mobile__title">
+      <strong>Recipe Book</strong>
+    </div>
+
+  </div>
+
+  <mat-sidenav-container class="mobile-sidenav" hasBackdrop="false">
+    <mat-sidenav mode="over" [(opened)]="sidebarDisplayed" class="mobile-sidenav__content">
+      <div class="mobile-sidenav__item-category">
+        <span class="mobile-sidenav__category-title">Links</span>
+        <ul class="mobile-sidenav__items" (click)="closeSidebar()">
+          <li class="mobile-sidenav__item">
+            <a href="#" class="mobile-sidenav__link">Recipes</a>
+          </li>
+          <li class="mobile-sidenav__item">
+            <a href="#" class="mobile-sidenav__link">Shopping List</a>
+          </li>
+        </ul>
+      </div>
+      <div class="mobile-sidenav__item-category">
+        <span class="mobile-sidenav__category-title">Options</span>
+        <ul class="mobile-sidenav__items" (click)="closeSidebar()">
+          <li class="mobile-sidenav__item">
+            <a href="#" class="mobile-sidenav__link">Save Data</a>
+          </li>
+          <li class="mobile-sidenav__item">
+            <a href="#" class="mobile-sidenav__link">Fetch Data</a>
+          </li>
+        </ul>
+      </div>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</nav>
+
+
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-mobile-navigation-bar',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MobileNavigationBarComponent implements OnInit {
 
-  constructor() { }
+  sidebarDisplayed = false;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  burgerMenuClicked(): void {
+    this.sidebarDisplayed = !this.sidebarDisplayed;
+  }
+
+  closeSidebar(): void {
+    this.sidebarDisplayed = false;
+  }
 }
