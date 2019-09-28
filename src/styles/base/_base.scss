@@ -28,3 +28,9 @@ body {
   font-weight: 300;
   line-height: 1.6rem;
 }
+
+.container {
+  display: grid;
+  grid-template-columns: [full-start] 8rem [center-start] 1fr [center-end] 8rem [full-end];
+}
+
