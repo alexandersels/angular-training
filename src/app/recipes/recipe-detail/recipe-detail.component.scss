@@ -11,10 +11,12 @@
 
 .recipe-summary {
   display: flex;
+  min-height: 30rem;
+  height: 100%;
 
   &__information {
     display: block;
-    height: 20rem;
+    height: 50rem;
     width: 50%;
     background-color: red;
   }
@@ -25,7 +27,7 @@
 
   &__image-wrapper {
     display: block;
-    height: 20rem;
+    height: auto;
     width: 50%;
     background-color: green;
   }
