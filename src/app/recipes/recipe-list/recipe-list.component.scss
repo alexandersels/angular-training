@@ -2,14 +2,6 @@
 
 .recipes {
 
-  margin: 2rem auto;
-  max-width: $max-width;
-
-  @media only screen and (max-width: $bp-largest) {
-    margin: 2rem 1rem;
-    max-width: unset;
-  }
-
   h2 {
     display: block;
     height: 100%;
@@ -24,15 +16,11 @@
 
 .recipe-card {
 
-  grid-column-end: span 4;
-  box-shadow: 0 1rem 3rem rgba($color-black, .1);
-  border: $color-primary-dark 2px solid;
   border-radius: 5px;
   margin-bottom: 1rem;
 
   &__image-container {
     display: block;
-    grid-column-end: span 12;
     text-align: center;
   }
 
@@ -44,7 +32,6 @@
 
   &__description {
     display: block;
-    grid-column-end: span 12;
     margin-top: 2rem;
     padding-left: 1rem;
   }

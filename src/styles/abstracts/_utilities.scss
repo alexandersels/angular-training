@@ -1,3 +1,5 @@
+// GRID COLUMN LAYOUT
+
 .grid-16-column {
 
   display: grid;
@@ -34,8 +36,108 @@
   }
 }
 
+.grid-8-column {
+
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+
+  @media only screen and (max-width: $bp-largest) {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.grid-4-column {
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  @media only screen and (max-width: $bp-largest) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+// GRID ROW AND COL GAP
+
+.grid-gap-4 {
+  grid-column-gap: 4rem;
+  grid-row-gap: 4rem;
+}
+
 .grid-gap-2 {
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
+}
+
+.grid-gap-1 {
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+}
+
+// GRID COLUMN SPAN
+
+.grid-col-span-2 {
+  grid-column-end: span 2;
+}
+
+.grid-col-span-3 {
+  grid-column-end: span 3;
+}
+
+.grid-col-span-4 {
+  grid-column-end: span 4;
+}
+
+.grid-col-span-8 {
+  grid-column-end: span 8;
+}
+
+.grid-col-span-12 {
+  grid-column-end: span 12;
+}
+
+.grid-col-span-16 {
+  grid-column-end: span 16;
+}
+
+// BORDERS
+
+.border {
+  border-style: solid;
+  border-width: 3px;
+  border-color: $color-black;
+}
+
+.border--primary {
+  border-color: $color-primary;
+}
+
+.border--primary-light {
+  border-color: $color-primary-light;
+}
+
+.border--primary-dark {
+  border-color: $color-primary-dark;
+}
+
+// SHADOW
+
+.box-shadow {
+  box-shadow: 0 1rem 3rem rgba($color-black, .3);
 }
 

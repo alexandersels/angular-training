@@ -29,8 +29,14 @@ body {
   line-height: 1.6rem;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: [full-start] 8rem [center-start] 1fr [center-end] 8rem [full-end];
+.max-width-content {
+
+  margin: 2rem auto;
+  max-width: $max-width;
+
+  @media only screen and (max-width: $bp-largest) {
+    margin: 2rem 1rem;
+    max-width: unset;
+  }
 }
 
