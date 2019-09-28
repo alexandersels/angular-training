@@ -1,0 +1,41 @@
+.grid-16-column {
+
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+
+  @media only screen and (max-width: $bp-largest) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.grid-12-column {
+
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+
+  @media only screen and (max-width: $bp-largest) {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.grid-gap-2 {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+}
+
