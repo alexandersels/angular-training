@@ -167,7 +167,7 @@
     span {
       display: flex;
       align-items: center;
-      color: $color-grey-dark-3;
+      color: $color-grey-dark;
       font-size: $default-font-size;
       font-weight: 700;
     }
@@ -175,6 +175,7 @@
     &::before {
       content: "+";
       margin-right: 1rem;
+      color: $color-black;
       font-size: $default-font-size;
       font-weight: 600;
       line-height: 3rem;
@@ -207,6 +208,7 @@
     align-items: center;
     counter-increment: my-counter;
     margin-bottom: 1rem;
+    cursor: pointer;
 
     span {
       display: inline-block;

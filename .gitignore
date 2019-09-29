@@ -33,7 +33,7 @@ yarn-error.log
 # build-analytics
 .build-analytics
 
-# rollup-test output
+# rollup-directionClicked output
 /modules/rollup-test/dist/
 
 # User specific bazel settings
