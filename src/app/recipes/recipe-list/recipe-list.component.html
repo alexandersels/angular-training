@@ -3,88 +3,11 @@
     <h2>Available Recipes</h2>
   </div>
   <div class="recipes__container grid-16-column grid-gap-2">
-    <a class="recipe-card grid-col-span-4 grid-12-column border border--primary-dark box-shadow"
-       *ngFor="let recipe of recipes">
-      <div class="recipe-card__image-container grid-col-span-12">
-        <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">
-      </div>
-      <div class="recipe-card__description grid-col-span-12">
-        <h4 class="recipe-card__title">{{recipe.name}}</h4>
-        <p>{{recipe.description}}</p>
-      </div>
-    </a>
-    <a class="recipe-card grid-col-span-4 grid-12-column border border--primary-dark box-shadow"
-       *ngFor="let recipe of recipes">
-      <div class="recipe-card__image-container grid-col-span-12">
-        <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">
-      </div>
-      <div class="recipe-card__description grid-col-span-12">
-        <h4 class="recipe-card__title">{{recipe.name}}</h4>
-        <p>{{recipe.description}}</p>
-      </div>
-    </a>
-    <a class="recipe-card grid-col-span-4 grid-12-column border border--primary-dark box-shadow"
-       *ngFor="let recipe of recipes">
-      <div class="recipe-card__image-container grid-col-span-12">
-        <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">
-      </div>
-      <div class="recipe-card__description grid-col-span-12">
-        <h4 class="recipe-card__title">{{recipe.name}}</h4>
-        <p>{{recipe.description}}</p>
-      </div>
-    </a>
-    <a class="recipe-card grid-col-span-4 grid-12-column border border--primary-dark box-shadow"
-       *ngFor="let recipe of recipes">
-      <div class="recipe-card__image-container grid-col-span-12">
-        <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">
-      </div>
-      <div class="recipe-card__description grid-col-span-12">
-        <h4 class="recipe-card__title">{{recipe.name}}</h4>
-        <p>{{recipe.description}}</p>
-      </div>
-    </a>
-    <a class="recipe-card grid-col-span-4 grid-12-column border border--primary-dark box-shadow"
-       *ngFor="let recipe of recipes">
-      <div class="recipe-card__image-container grid-col-span-12">
-        <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">
-      </div>
-      <div class="recipe-card__description grid-col-span-12">
-        <h4 class="recipe-card__title">{{recipe.name}}</h4>
-        <p>{{recipe.description}}</p>
-      </div>
-    </a>
-    <a class="recipe-card grid-col-span-4 grid-12-column border border--primary-dark box-shadow"
-       *ngFor="let recipe of recipes">
-      <div class="recipe-card__image-container grid-col-span-12">
-        <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">
-      </div>
-      <div class="recipe-card__description grid-col-span-12">
-        <h4 class="recipe-card__title">{{recipe.name}}</h4>
-        <p>{{recipe.description}}</p>
-      </div>
-    </a>
-    <a class="recipe-card grid-col-span-4 grid-12-column border border--primary-dark box-shadow"
-       *ngFor="let recipe of recipes">
-      <div class="recipe-card__image-container grid-col-span-12">
-        <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">
-      </div>
-      <div class="recipe-card__description grid-col-span-12">
-        <h4 class="recipe-card__title">{{recipe.name}}</h4>
-        <p>{{recipe.description}}</p>
-      </div>
-    </a>
-    <a class="recipe-card grid-col-span-4 grid-12-column border border--primary-dark box-shadow"
-       *ngFor="let recipe of recipes">
-      <div class="recipe-card__image-container grid-col-span-12">
-        <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">
-      </div>
-      <div class="recipe-card__description grid-col-span-12">
-        <h4 class="recipe-card__title">{{recipe.name}}</h4>
-        <p>{{recipe.description}}</p>
-      </div>
-    </a>
+    <app-recipe-item *ngFor="let recipeElement of recipes"
+                     [recipe]="recipeElement"
+                     class="grid-col-span-4">
+    </app-recipe-item>
   </div>
-
   <button>New Recipe</button>
 </div>
 

@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +7,9 @@ import {FormsModule} from '@angular/forms';
 })
 export class AppComponent {
   title = 'my-angular-app';
+  loadedFeature = 'recipe';
+
+  onNavigate(feature: string) {
+    this.loadedFeature = feature;
+  }
 }

@@ -1,0 +1,47 @@
+@import "main.scss";
+
+.recipe-card {
+
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  transition: all .2s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    border-color: $color-secondary-dark;
+
+  }
+
+  &__image-container {
+    display: block;
+    text-align: center;
+  }
+
+  &__image {
+    max-width: 100%;
+    background-size: cover;
+    height: auto;
+    width: auto;
+  }
+
+  &__description {
+    display: block;
+    margin-top: 2rem;
+    padding-left: 1rem;
+  }
+
+  &__title {
+    color: $color-primary-dark;
+    font-size: 2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $color-grey-dark;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+}

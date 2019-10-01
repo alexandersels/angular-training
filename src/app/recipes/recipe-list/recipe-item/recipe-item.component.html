@@ -1,3 +1,9 @@
-<p>
-  recipe-item works!
-</p>
+<a class="recipe-card grid-12-column border border--primary-dark box-shadow">
+  <div class="recipe-card__image-container grid-col-span-12">
+    <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">
+  </div>
+  <div class="recipe-card__description grid-col-span-12">
+    <h4 class="recipe-card__title">{{recipe.name}}</h4>
+    <p>{{recipe.description}}</p>
+  </div>
+</a>
