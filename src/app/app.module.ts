@@ -12,6 +12,7 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DesktopNavigationBarComponent } from './header/desktop-navigation-bar/desktop-navigation-bar.component';
 import { MobileNavigationBarComponent } from './header/mobile-navigation-bar/mobile-navigation-bar.component';
+import {FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
@@ -46,6 +47,7 @@ const materialModules = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ...materialModules,
     BrowserAnimationsModule,
   ],

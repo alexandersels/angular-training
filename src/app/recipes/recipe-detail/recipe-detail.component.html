@@ -2,7 +2,7 @@
   <div class="recipe-details__container grid-16-column">
     <div class="recipe-summary__information">
       <div class="margin-bottom-small">
-        <h1>SCAMPI</h1>
+        <h1>{{recipe.name}}</h1>
       </div>
       <div class="recipe-summary__rating">
         <i class="fas fa-star"></i>
@@ -17,9 +17,7 @@
         <span>11 photos</span>
       </div>
       <div class="recipe-summary__description">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque blanditiis, cupiditate dolores est
-          excepturi incidunt mollitia nemo nobis nulla optio quasi, tempore, tenetur ullam vero voluptatem. Corporis
-          distinctio fugit praesentium.</p>
+        <p>{{recipe.description}}</p>
       </div>
       <div class="recipe-summary__actions-wrapper">
         <ul class="recipe-summary__actions">
@@ -42,7 +40,7 @@
       </div>
     </div>
     <div class="recipe-summary__image-wrapper">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Recipe.jpg" alt="" class="recipe-summary__image">
+      <img [src]=recipe.imagePath alt={{recipe.name}} class="recipe-summary__image">
     </div>
     <div class="recipe-ingredients grid-responsive-col-span-16">
       <div class="recipe-ingredients__container">

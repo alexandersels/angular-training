@@ -1,6 +1,6 @@
 <app-header (featureSelected)="onNavigate($event)" class="header"></app-header>
 <div class="page-wrapper">
   <app-recipes *ngIf="loadedFeature === 'recipe'"></app-recipes>
-  <h2 *ngIf="loadedFeature != 'recipe'">EASY</h2>
+  <app-shopping-list *ngIf="loadedFeature != 'recipe'"></app-shopping-list>
 </div>
 <app-footer></app-footer>

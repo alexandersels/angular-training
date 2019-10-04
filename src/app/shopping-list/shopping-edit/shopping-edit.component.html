@@ -1,3 +1,23 @@
-<p>
-  shopping-edit works!
-</p>
+<div>
+  <form>
+    <div class="row">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        #nameInput>
+    </div>
+    <div class="row">
+      <label for="amount">Amount</label>
+      <input
+        type="number"
+        id="amount"
+        #amountInput>
+    </div>
+    <div class="buttons">
+      <button class="btn" type="submit" (click)="onAddItem()">Add</button>
+      <button class="btn" type="submit">Delete</button>
+      <button class="btn" type="submit">Clear</button>
+    </div>
+  </form>
+</div>
