@@ -19,6 +19,7 @@ import {
   MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,
   MatRippleModule, MatSelectModule, MatIconModule, MatSidenavModule
 } from '@angular/material';
+import {DropdownDirective} from './shared/dropdown.directive';
 
 const materialModules = [
   MatButtonModule,
@@ -44,6 +45,7 @@ const materialModules = [
     ShoppingEditComponent,
     DesktopNavigationBarComponent,
     MobileNavigationBarComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
