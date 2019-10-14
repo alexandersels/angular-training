@@ -1,7 +1,5 @@
 <section class="max-width-content margin-top-medium margin-bottom-medium">
-  <app-recipe-list
-    (recipeWasSelected)="selectedRecipe = $event">
-  </app-recipe-list>
+  <app-recipe-list></app-recipe-list>
   <app-recipe-detail
     *ngIf="selectedRecipe; else infoText"
     [recipe]="selectedRecipe">

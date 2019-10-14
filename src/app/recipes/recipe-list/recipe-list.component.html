@@ -5,7 +5,6 @@
   <div class="recipes__container grid-16-column grid-gap-2">
     <app-recipe-item *ngFor="let recipeElement of recipes"
                      [recipe]="recipeElement"
-                     (recipeSelected)="onRecipeSelected(recipeElement)"
                      class="grid-col-span-4">
     </app-recipe-item>
   </div>

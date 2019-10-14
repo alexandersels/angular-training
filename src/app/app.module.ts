@@ -20,6 +20,7 @@ import {
   MatRippleModule, MatSelectModule, MatIconModule, MatSidenavModule
 } from '@angular/material';
 import {DropdownDirective} from './shared/dropdown.directive';
+import {ShoppingListService} from './shopping-list/shopping-list.service';
 
 const materialModules = [
   MatButtonModule,
@@ -53,7 +54,7 @@ const materialModules = [
     ...materialModules,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
