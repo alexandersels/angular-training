@@ -22,7 +22,7 @@
       <div class="recipe-summary__actions-wrapper">
         <ul class="recipe-summary__actions">
           <li class="recipe-summary__action border border--primary-dark">
-            <a class="recipe-summary__action-link" href="#">
+            <a class="recipe-summary__action-link" href="#" (click)="onAddToShoppingList()">
               To Shopping List
             </a>
           </li>
@@ -48,41 +48,8 @@
           <h2>Ingredients</h2>
         </div>
         <ul class="recipe-ingredients__list">
-          <li class="recipe-ingredients__item">
-            <span>Butter</span>
-          </li>
-          <li class="recipe-ingredients__item">
-            <span>Scampi</span>
-          </li>
-          <li class="recipe-ingredients__item">
-            <span>Lemon Juice</span>
-          </li>
-          <li class="recipe-ingredients__item">
-            <span>Salt and Pepper</span>
-          </li>
-          <li class="recipe-ingredients__item">
-            <span>Scampi</span>
-          </li>
-          <li class="recipe-ingredients__item">
-            <span>Pasta</span>
-          </li>
-          <li class="recipe-ingredients__item">
-            <span>Garlic</span>
-          </li>
-          <li class="recipe-ingredients__item">
-            <span>Pasta</span>
-          </li>
-          <li class="recipe-ingredients__item">
-            <span>Butter</span>
-          </li>
-          <li class="recipe-ingredients__item">
-            <span>Garlic</span>
-          </li>
-          <li class="recipe-ingredients__item">
-            <span>Lemon Juice</span>
-          </li>
-          <li class="recipe-ingredients__item">
-            <span>Salt and Pepper</span>
+          <li *ngFor="let ingredient of recipe.ingredients" class="recipe-ingredients__item">
+            <span>{{ingredient.name}} - {{ingredient.amount}}</span>
           </li>
         </ul>
       </div>

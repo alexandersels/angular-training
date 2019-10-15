@@ -1,12 +1,15 @@
-<div class="row">
-  <div class="col">
-    <ul>
-      <li *ngFor="let ingredient of ingredients">
-        <a href="#">
-          <span>{{ingredient.name}} ({{ingredient.amount}})</span>
+<section class="max-width-content margin-top-medium margin-bottom-medium">
+  <div class="shopping-list">
+    <h2 class="shopping-list__title">Shopping List</h2>
+    <ul class="shopping-list__items">
+      <li class="shopping-list__item border border--primary-dark box-shadow"
+          *ngFor="let ingredient of ingredients">
+        <a href="#" class="shopping-list__link">
+          <span class="shopping-list__item-name">{{ingredient.name}}</span>
+          <span class="shopping-list__item-amount">{{ingredient.amount}}</span>
         </a>
       </li>
     </ul>
   </div>
-</div>
+</section>
 <app-shopping-edit></app-shopping-edit>
