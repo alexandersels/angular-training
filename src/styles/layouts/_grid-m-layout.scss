@@ -1,0 +1,73 @@
+.grid-unit-m--col-12 {
+  @media only screen and (min-width: $bp-medium) {
+    grid-column-end: span 12;
+  }
+}
+
+.grid-unit-m--col-11 {
+  @media only screen and (min-width: $bp-medium) {
+    grid-column-end: span 11;
+  }
+}
+
+.grid-unit-m--col-10 {
+  @media only screen and (min-width: $bp-medium) {
+    grid-column-end: span 10;
+  }
+}
+
+.grid-unit-m--col-9 {
+  @media only screen and (min-width: $bp-medium) {
+    grid-column-end: span 9;
+  }
+}
+
+.grid-unit-m--col-8 {
+  @media only screen and (min-width: $bp-medium) {
+    grid-column-end: span 8;
+  }
+}
+
+.grid-unit-m--col-7 {
+  @media only screen and (min-width: $bp-medium) {
+
+    grid-column-end: span 7;
+  }
+}
+
+.grid-unit-m--col-6 {
+  @media only screen and (min-width: $bp-medium) {
+
+    grid-column-end: span 6;
+  }
+}
+
+.grid-unit-m--col-5 {
+  @media only screen and (min-width: $bp-medium) {
+    grid-column-end: span 5;
+  }
+}
+
+.grid-unit-m--col-4 {
+  @media only screen and (min-width: $bp-medium) {
+    grid-column-end: span 4;
+  }
+}
+
+.grid-unit-m--col-3 {
+  @media only screen and (min-width: $bp-medium) {
+    grid-column-end: span 3;
+  }
+}
+
+.grid-unit-m--col-2 {
+  @media only screen and (min-width: $bp-medium) {
+    grid-column-end: span 2;
+  }
+}
+
+.grid-unit-m--col-1 {
+  @media only screen and (min-width: $bp-medium) {
+    grid-column-end: span 1;
+  }
+}

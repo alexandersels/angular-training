@@ -24,10 +24,12 @@ $navigation-title: 2.5rem;
 $default-font-size: 1.6rem;
 
 // RESPONSE BREAKPOINTS
-$bp-largest: 80em; // 1280px
-$bp-large: 62.5em; // 1000px
-$bp-medium: 50em;  // 800px
-$bp-small: 37.5em; // 600px
+//$bp-largest: 80em; // 1280px
+$bp-largest: 1690px; // 1000px
+$bp-large: 1280px;  // 800px
+$bp-medium: 980px; // 600px
+$bp-small: 736px; // 600px
+$bp-smallest: 480px; // 600px
 
 // MAX-WIDTH
 $max-width: 128rem;

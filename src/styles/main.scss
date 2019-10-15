@@ -2,5 +2,12 @@
 @import "abstracts/typography";
 @import 'abstracts/utilities';
 
+@import 'layouts/grid-layout';
+@import 'layouts/grid-xs-layout';
+@import 'layouts/grid-s-layout';
+@import 'layouts/grid-m-layout';
+@import 'layouts/grid-l-layout';
+@import 'layouts/grid-xl-layout';
+
 @import "base/base";
 @import 'base/reset';

@@ -1,8 +1,10 @@
-<a class="recipe-card grid-12-column border border--primary-dark box-shadow" (click)="onSelected()">
-  <div class="recipe-card__image-container grid-col-span-12">
-    <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">
+<a class="recipe-card grid-container" (click)="onSelected()">
+  <div class="recipe-card__image-container grid-unit-xs--col-4 grid-unit-s--col-12">
+    <figure class="recipe-card__image-box">
+      <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">
+    </figure>
   </div>
-  <div class="recipe-card__description grid-col-span-12">
+  <div class="recipe-card__description grid-unit-xs--col-8 grid-unit-s--col-12">
     <h4 class="recipe-card__title">{{recipe.name}}</h4>
     <p>{{recipe.description}}</p>
   </div>

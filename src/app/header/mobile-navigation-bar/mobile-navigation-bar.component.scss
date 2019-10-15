@@ -23,12 +23,13 @@
   background-color: $color-primary;
   height: 5rem;
   width: 100%;
-  display: none;
 
-  @media screen and (max-width: $bp-small) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: $bp-medium) {
+    display: none;
   }
 
   &__wrapper {

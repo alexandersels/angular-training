@@ -21,7 +21,7 @@ export class RecipeService {
     new Recipe(
       'Scampi Two',
       'This is simply a directionClicked',
-      'https://upload.wikimedia.org/wikipedia/commons/3/39/Recipe.jpg',
+      'https://www.thespruceeats.com/thmb/kxu3tr3tIob-VCMNTKc5b7g2VFA=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/marinated-top-round-steak-3060302-hero-02-ed071d5d7e584bea82857112aa734a94.jpg',
       [
         new Ingredient('Scampi', 1),
         new Ingredient('Pasta', 1),

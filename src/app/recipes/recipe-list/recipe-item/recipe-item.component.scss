@@ -6,29 +6,49 @@
   margin-bottom: 1rem;
   transition: all .2s;
 
+  width: 100%;
+
   &:hover {
     cursor: pointer;
     transform: scale(1.05);
     border-color: $color-secondary-dark;
-
   }
 
   &__image-container {
-    display: block;
+
+    width: 100%;
     text-align: center;
+    height: auto;
+  }
+
+  &__image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: .4rem;
+
+    @media only screen and (min-width: $bp-small) {
+      height: 19rem;
+    }
   }
 
   &__image {
-    max-width: 100%;
     background-size: cover;
-    height: auto;
-    width: auto;
+    background-position: 50% 50%;
+    max-height: 19rem;
+    max-width: 100%;
   }
 
   &__description {
+
     display: block;
     margin-top: 2rem;
     padding-left: 1rem;
+
+    @media screen and (max-width: $bp-small) {
+      margin-top: 0;
+    }
   }
 
   &__title {

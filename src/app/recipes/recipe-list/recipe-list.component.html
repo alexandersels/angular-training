@@ -2,10 +2,11 @@
   <div class="recipes__title">
     <h2>Available Recipes</h2>
   </div>
-  <div class="recipes__container grid-16-column grid-gap-2">
+
+  <div class="recipes__container grid-container">
     <app-recipe-item *ngFor="let recipeElement of recipes"
                      [recipe]="recipeElement"
-                     class="grid-col-span-4">
+                     class="grid-unit-xs--col-12 grid-unit-s--col-6 grid-unit-m--col-4 grid-unit-l--col-3">
     </app-recipe-item>
   </div>
   <button>New Recipe</button>
