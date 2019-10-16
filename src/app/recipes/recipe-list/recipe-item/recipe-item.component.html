@@ -1,4 +1,6 @@
-<a class="recipe-card grid-container" (click)="onSelected()">
+<a
+  class="recipe-card grid-container"
+  [routerLink]="[index]">
   <div class="recipe-card__image-container grid-unit-xs--col-4 grid-unit-s--col-12">
     <figure class="recipe-card__image-box">
       <img class="recipe-card__image" [src]="recipe.imagePath" alt="{{recipe.name}}">

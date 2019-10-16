@@ -60,6 +60,10 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
+  public getRecipe(id: number): Recipe {
+    return this.recipes.slice[id];
+  }
+
   addIngredientsToShoppinhList(ingredients: Ingredient[]): void {
     this.slService.addIngredients(ingredients);
   }

@@ -9,12 +9,12 @@
     <!--  Menu Items  -->
     <ul class="navbar-desktop__menu-items">
       <li class="navbar-desktop__menu-item">
-        <a href="#" class="navbar-desktop__link" (click)="onSelect('recipe')">
+        <a routerLinkActive="" routerLink="/recipes" class="navbar-desktop__link">
           <span>Recipes</span>
         </a>
       </li>
       <li class="navbar-desktop__menu-item">
-        <a href="#" class="navbar-desktop__link" (click)="onSelect('shopping-list')">
+        <a routerLinkActive="" routerLink="/shopping-list" class="navbar-desktop__link">
           <span>Shopping List</span>
         </a>
       </li>
@@ -23,18 +23,18 @@
     <!--    Dropdown items  -->
     <div class="navbar-desktop__menu-items navbar-desktop__menu-items--align-right">
       <div class="navbar-desktop__menu-item navbar-desktop__menu-dropdown-item">
-        <a href="#" class="navbar-desktop__link">
+        <a class="navbar-desktop__link">
           <span>Configuration</span>
           <i class="fas fa-chevron-up"></i>
         </a>
         <ul class="dropdown box-shadow">
           <li class="dropdown__item">
-            <a href="#" class="dropdown__link">
+            <a class="dropdown__link">
               <span>Save data</span>
             </a>
           </li>
           <li class="dropdown__item">
-            <a href="#" class="dropdown__link">
+            <a class="dropdown__link">
               <span>Fetch data</span>
             </a>
           </li>
