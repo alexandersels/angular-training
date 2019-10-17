@@ -90,14 +90,15 @@
     border-radius: 10px;
     overflow: hidden;
     transition: all .2s;
+    cursor: pointer;
   }
 
   &__action:hover {
     transform: scale(1.2);
   }
 
-  &__action-link:link,
-  &__action-link:visited {
+  &__action-link {
+    text-align: center;
     display: block;
     text-decoration: none;
     font-size: 1.4rem;
