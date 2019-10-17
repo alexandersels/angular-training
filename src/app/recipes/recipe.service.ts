@@ -61,10 +61,10 @@ export class RecipeService {
   }
 
   public getRecipe(id: number): Recipe {
-    return this.recipes.slice[id];
+    return this.recipes[id];
   }
 
-  addIngredientsToShoppinhList(ingredients: Ingredient[]): void {
+  addIngredientsToShoppingList(ingredients: Ingredient[]): void {
     this.slService.addIngredients(ingredients);
   }
 }

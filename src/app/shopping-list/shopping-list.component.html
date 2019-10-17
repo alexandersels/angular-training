@@ -1,16 +1,16 @@
 <section class="max-width-content margin-top-medium margin-bottom-medium">
   <div class="shopping-list">
     <h2 class="shopping-list__title">Shopping List</h2>
-    <div class="shopping-list__items grid-container grid-col-12">
+    <div class="shopping-list__items grid-container">
       <div *ngFor="let ingredient of ingredients"
            class="ingredient
-           grid-container grid-col-7
+           grid-container grid-unit-xs--col-10 grid-unit-s--col-7 grid-unit-l--col-5
            border border--primary-dark
            box-shadow">
-        <div class="ingredient__image grid-col-2">
+        <div class="ingredient__image grid-unit-xs--col-2 grid-unit-s--col-2">
           <img src="../assets/img/100x100/scampi.jpg" alt="scampi">
         </div>
-        <div class="ingredient__description grid-col-5">
+        <div class="ingredient__description grid-unit-xs--col-5 grid-unit-s--col-5">
             <span class="ingredient__name">
               {{ingredient.name}}
             </span>
@@ -18,10 +18,10 @@
             Categorie: Vis
           </span>
         </div>
-        <div class="ingredient__amount grid-col-3">
+        <div class="ingredient__amount grid-unit-xs--col-2 grid-unit-s--col-3">
           <span>Aantal: {{ingredient.amount}}</span>
         </div>
-        <div class="ingredient__price grid-col-2">
+        <div class="ingredient__price grid-unit-xs--col-2 grid-unit-s--col-2">
           <span>€ 5</span>
         </div>
       </div>
