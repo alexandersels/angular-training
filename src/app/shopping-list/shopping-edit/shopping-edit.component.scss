@@ -1,1 +1,68 @@
+@import "main";
 
+.shopping-form {
+
+  margin-top: 3rem;
+
+  grid-row-gap: 1.6rem;
+  grid-column-gap: 2.4rem;
+
+  &__group {
+    grid-column-gap: 1rem;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+
+    span {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+  }
+
+  &__input {
+    display: block;
+    padding: 0 1rem;
+    width: 100%;
+    height: 3rem;
+    margin: 0 1rem;
+    border: 2px solid $color-primary-dark;
+    border-radius: 4px;
+
+    &:hover {
+      border: 2px solid $color-secondary-dark;
+    }
+  }
+
+  &__button {
+    background-color: $color-primary-dark;
+    color: $color-white;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s;
+    width: auto;
+
+    &:hover {
+      transform: scale(1.1);
+      background-color: $color-secondary-dark;
+    }
+  }
+}
+
+input.ng-invalid {
+  border-color: red !important;
+}
+
+.disabled {
+  background-color: gray !important;
+  cursor: default;
+
+  &:hover {
+    transform: none !important;
+  }
+}

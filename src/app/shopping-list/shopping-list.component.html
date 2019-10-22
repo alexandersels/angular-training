@@ -2,11 +2,12 @@
   <div class="shopping-list">
     <h2 class="shopping-list__title">Shopping List</h2>
     <div class="shopping-list__items grid-container">
-      <div *ngFor="let ingredient of ingredients"
+      <div *ngFor="let ingredient of ingredients; let i = index"
            class="ingredient
            grid-container grid-unit-xs--col-10 grid-unit-s--col-7 grid-unit-l--col-5
            border border--primary-dark
-           box-shadow">
+           box-shadow"
+      (click)="onEditItem(i)">
         <div class="ingredient__image grid-unit-xs--col-2 grid-unit-s--col-2">
           <img src="../assets/img/100x100/scampi.jpg" alt="scampi">
         </div>
@@ -27,5 +28,5 @@
       </div>
     </div>
   </div>
+  <app-shopping-edit></app-shopping-edit>
 </section>
-<app-shopping-edit></app-shopping-edit>
