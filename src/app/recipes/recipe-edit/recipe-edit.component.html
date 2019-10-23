@@ -1,3 +1,59 @@
-<p>
-  recipe-edit works!
-</p>
+<div class="grid-container">
+  <form class="recipe-form grid-container grid-unit-xs--col-10 grid-unit-s--col-7 grid-unit-l--col-5">
+
+    <div class="recipe-form__group grid-container grid-unit-xs--col-12">
+      <label class="recipe-form__label grid-unit-xs--col-3" for="name">
+        <span>Name: </span>
+      </label>
+      <input class="recipe-form__input grid-unit-xs--col-9"
+             type="text"
+             id="name">
+    </div>
+
+    <div class="recipe-form__group grid-container grid-unit-xs--col-12">
+      <label class="recipe-form__label grid-unit-xs--col-3" for="imagePath">
+        <span>Image URL: </span>
+      </label>
+      <input class="recipe-form__input grid-unit-xs--col-9"
+             type="text"
+             id="imagePath">
+    </div>
+
+    <div class="recipe-form__group grid-unit-xs--col-12">
+      <img src="" class="jaja">
+    </div>
+
+    <div class="recipe-form__group grid-container grid-unit-xs--col-12">
+      <label class="recipe-form__label grid-unit-xs--col-3" for="description">
+        <span>Description: </span>
+      </label>
+      <textarea class="recipe-form__input grid-unit-xs--col-9"
+                type="text"
+                id="description"
+                rows="6">
+        </textarea>
+    </div>
+
+    <div class="recipe-form__group grid-container grid-unit-xs--col-12">
+      <input class="recipe-form__input grid-unit-xs--col-6"
+             type="text">
+      <input class="recipe-form__input grid-unit-xs--col-3"
+             type="number">
+      <button class="recipe-edit__button border border--primary-dark grid-unit-xs--col-3"
+              type="button">
+        X
+      </button>
+    </div>
+
+    <div class="recipe-form__group grid-container grid-unit-xs--col-12">
+      <button class="recipe-edit__button border border--primary-dark grid-unit-xs--col-3"
+              type="submit">
+        Save
+      </button>
+      <button class="recipe-edit__button border border--primary-dark grid-unit-xs--col-3"
+              type="button">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
