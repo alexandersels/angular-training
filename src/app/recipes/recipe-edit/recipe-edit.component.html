@@ -1,5 +1,6 @@
 <div class="grid-container">
-  <form class="recipe-form grid-container grid-unit-xs--col-10 grid-unit-s--col-7 grid-unit-l--col-5">
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()"
+        class="recipe-form grid-container grid-unit-xs--col-10 grid-unit-s--col-7 grid-unit-l--col-5">
 
     <div class="recipe-form__group grid-container grid-unit-xs--col-12">
       <label class="recipe-form__label grid-unit-xs--col-3" for="name">
@@ -7,7 +8,8 @@
       </label>
       <input class="recipe-form__input grid-unit-xs--col-9"
              type="text"
-             id="name">
+             id="name"
+             formControlName="name">
     </div>
 
     <div class="recipe-form__group grid-container grid-unit-xs--col-12">
@@ -16,7 +18,8 @@
       </label>
       <input class="recipe-form__input grid-unit-xs--col-9"
              type="text"
-             id="imagePath">
+             id="imagePath"
+             formControlName="imagePath">
     </div>
 
     <div class="recipe-form__group grid-unit-xs--col-12">
@@ -30,11 +33,13 @@
       <textarea class="recipe-form__input grid-unit-xs--col-9"
                 type="text"
                 id="description"
-                rows="6">
+                rows="6"
+                formControlName="description">
         </textarea>
     </div>
 
-    <div class="recipe-form__group grid-container grid-unit-xs--col-12">
+    <div formArrayName="ingredients"
+      class="recipe-form__group grid-container grid-unit-xs--col-12">
       <input class="recipe-form__input grid-unit-xs--col-6"
              type="text">
       <input class="recipe-form__input grid-unit-xs--col-3"
