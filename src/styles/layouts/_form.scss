@@ -1,0 +1,95 @@
+.form {
+
+  display: block;
+  width: auto;
+
+  &__row {
+    @extend .grid-container;
+    grid-column-gap: 2.4rem;
+    margin-bottom: 1rem;
+
+    @media only screen and (min-width: $bp-small) {
+      grid-row-gap: 1.6rem;
+    }
+  }
+
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    border: 1px solid $color-primary;
+    border-radius: 4px;
+
+    &:hover {
+      border: 1px solid $color-secondary-dark;
+    }
+  }
+
+  input {
+    height: 3rem;
+  }
+
+  label {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+
+    span {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    height: 3rem;
+    padding: 0 2rem;
+    border: none;
+    cursor: pointer;
+    transition: all .2s;
+
+    span {
+      color: $color-white;
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:disabled {
+      background-color: gray !important;
+      cursor: default;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+
+  &__button--success {
+    background-color: $color-primary-dark;
+  }
+
+  &__button--danger {
+    background-color: red;
+  }
+
+  &__button--rounded {
+    border-radius: 50px;
+  }
+
+}
+
+input.ng-invalid.ng-touched {
+  border-color: red !important;
+}
+

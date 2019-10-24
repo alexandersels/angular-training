@@ -34,7 +34,7 @@ body {
   margin: 2rem auto;
   max-width: $max-width;
 
-  @media only screen and (max-width: $bp-largest) {
+  @media only screen and (max-width: $bp-large) {
     margin: 2rem 1rem;
     max-width: unset;
   }
