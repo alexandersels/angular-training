@@ -1,49 +1,38 @@
-<div class="grid-container">
-  <form class="shopping-form grid-container grid-unit-xs--col-10 grid-unit-s--col-7 grid-unit-l--col-5"
-        (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <div class="shopping-form__group grid-container grid-unit-xs--col-12">
-      <label class="shopping-form__label grid-unit-xs--col-3" for="name">
-        <span>Name: </span>
-      </label>
-      <input class="shopping-form__input grid-unit-xs--col-9"
-             type="text"
-             id="name"
-             name="name"
-             ngModel>
-    </div>
-    <div class="shopping-form__group grid-container grid-unit-xs--col-12">
-      <label class="shopping-form__label grid-unit-xs--col-3" for="amount">
-        <span>Amount: </span>
-      </label>
-      <input class="shopping-form__input grid-unit-xs--col-9"
-             type="number"
-             id="amount"
-             name="amount"
-             ngModel
-             required
-             pattern="^[1-9]+[0-9]*$"
-      >
-    </div>
-    <div class="shopping-form__group grid-container grid-unit-xs--col-12">
-      <button class="shopping-form__button border border--primary-dark grid-unit-xs--col-3"
-              type="submit"
-              [disabled]="!f.valid"
-              [ngClass]="{'disabled': !f.valid}"
-      >
-        {{editMode ? 'Update' : 'Add'}}
-      </button>
-      <button class="shopping-form__button border border--primary-dark grid-unit-xs--col-3"
-              type="button"
-              (click)="onDelete()"
-              *ngIf="editMode"
-      >Delete
-      </button>
-      <button class="shopping-form__button border border--primary-dark grid-unit-xs--col-3"
-              type="button"
-              (click)="onClear()"
-      >
-        Clear
-      </button>
-    </div>
-  </form>
-</div>
+<form class="form margin-top-small" (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+  <div class="form__row grid-unit-xs--col-12">
+    <label class="grid-unit-xs--col-3" for="name">
+      <span>Name: </span>
+    </label>
+    <input class="grid-unit-xs--col-9" type="text" id="name" name="name" ngModel>
+  </div>
+
+  <div class="form__row grid-unit-xs--col-12">
+    <label class="grid-unit-xs--col-3" for="amount">
+      <span>Amount: </span>
+    </label>
+    <input class="grid-unit-xs--col-9" type="number" id="amount" name="amount" ngModel required
+           pattern="^[1-9]+[0-9]*$">
+  </div>
+
+  <div class="form__row grid-unit-xs--col-12">
+    <button class="form__button form__button--success grid-unit-xs--col-3"
+            type="submit"
+            [disabled]="!f.valid"
+            [ngClass]="{'disabled': !f.valid}">
+      <span>{{editMode ? 'Update' : 'Add'}}</span>
+    </button>
+    <button class="form__button form__button--success grid-unit-xs--col-3"
+            type="button"
+            (click)="onDelete()"
+            *ngIf="editMode">
+      <span>Delete</span>
+    </button>
+    <button class="form__button form__button--success grid-unit-xs--col-3"
+            type="button"
+            (click)="onClear()">
+      <span>Clear</span>
+    </button>
+  </div>
+
+</form>
