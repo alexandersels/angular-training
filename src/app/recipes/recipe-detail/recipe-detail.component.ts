@@ -37,6 +37,11 @@ export class RecipeDetailComponent implements OnInit {
     this.router.navigate(['recipes', this.id, 'edit']);
   }
 
+  onDeleteRecipe(): void {
+    this.recipeService.deleteRecipe(this.id)
+    this.router.navigate(['/recipes']);
+  }
+
   public directionClicked(event): void {
     if (!event.currentTarget.classList.contains('recipe-directions__item--clicked')) {
       event.currentTarget.classList.add('recipe-directions__item--clicked');

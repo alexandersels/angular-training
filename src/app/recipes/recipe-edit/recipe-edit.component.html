@@ -62,7 +62,9 @@
             [disabled]="!recipeForm.valid">
       <span>Save</span>
     </button>
-    <button class="form__button--success grid-unit-xs--col-2" type="button">
+    <button class="form__button--success grid-unit-xs--col-2"
+            type="button"
+            (click)="onCancel()">
       <span>Cancel</span>
     </button>
   </div>
