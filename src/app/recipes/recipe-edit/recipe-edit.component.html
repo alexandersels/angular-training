@@ -13,11 +13,11 @@
       <span>Image URL: </span>
     </label>
     <input formControlName="imagePath"
-           class="grid-unit-xs--col-12 grid-unit-s--col-9" type="text" id="imagePath">
+           class="grid-unit-xs--col-12 grid-unit-s--col-9" type="text" id="imagePath" #imagePath>
   </div>
 
   <div class="form__row grid-unit-xs--col-12">
-    <img src="" class="jaja">
+    <img [src]="imagePath.value" class="grid-unit-xs--col-12 grid-unit-s--col-3">
   </div>
 
   <div class="form__row grid-unit-xs--col-12">
@@ -39,7 +39,7 @@
              type="number"
              formControlName="amount">
       <div class="flex-end grid-unit-xs--col-3">
-        <button class="form__button--success" type="button">
+        <button class="form__button--success" type="button" (click)="onDelete(i)">
           <span>Delete</span>
         </button>
       </div>
