@@ -1,4 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component} from '@angular/core';
+import {DataStorageService} from '../../shared/data-storage.service';
 
 @Component({
   selector: 'app-desktop-navigation-bar',
@@ -7,4 +8,15 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class DesktopNavigationBarComponent {
 
+  constructor(private dataStorageService: DataStorageService) {
+  }
+
+  onSaveData() {
+    this.dataStorageService.storeRecipes();
+  }
+
+
+  onFetchData() {
+    this.dataStorageService.fetchRecipes().subscribe();
+  }
 }
