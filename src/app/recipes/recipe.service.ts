@@ -9,7 +9,7 @@ export class RecipeService {
 
   recipesChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[];
+  private recipes: Recipe[] = [];
 
   constructor(private slService: ShoppingListService) {
 

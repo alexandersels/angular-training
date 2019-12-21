@@ -6,6 +6,7 @@ import {RecipeStartComponent} from './recipes/recipe-start/recipe-start.componen
 import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.component';
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {RecipesResolverService} from './recipes/recipes-resolver.service';
+import {AuthComponent} from './auth/auth.component';
 
 const appRoutes: Routes = [
     {path: 'recipes/new', component: RecipeEditComponent, pathMatch: 'full'},
@@ -17,7 +18,8 @@ const appRoutes: Routes = [
         {path: '', component: RecipeStartComponent, pathMatch: 'full'},
         {path: ':id', component: RecipeDetailComponent, pathMatch: 'full', resolve: [RecipesResolverService]},
       ]
-    }
+    },
+    {path: 'auth', component: AuthComponent}
   ]
 ;
 

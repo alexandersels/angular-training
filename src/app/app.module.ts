@@ -32,8 +32,13 @@ import {RecipeStartComponent} from './recipes/recipe-start/recipe-start.componen
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {RecipeService} from './recipes/recipe.service';
 import {DataStorageService} from './shared/data-storage.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RecipesResolverService} from './recipes/recipes-resolver.service';
+import {AuthComponent} from './auth/auth.component';
+import {AuthService} from './auth/auth.service';
+import {LoadingSpinnerComponent} from './shared/loading-spinner/loading-spinner.component';
+import {AlertComponent} from './shared/alert/alert.component';
+import {AuthInterceptorService} from './auth/auth.interceptor.service';
 
 const materialModules = [
   MatButtonModule,
@@ -61,7 +66,10 @@ const materialModules = [
     MobileNavigationBarComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AuthComponent,
+    LoadingSpinnerComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +80,12 @@ const materialModules = [
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService, RecipesResolverService],
+  providers: [ShoppingListService,
+    RecipeService,
+    DataStorageService,
+    RecipesResolverService,
+    AuthService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -18,10 +18,20 @@
           <span>Shopping List</span>
         </a>
       </li>
+      <li *ngIf="!isAuthenticated" class="navbar-desktop__menu-item">
+        <a routerLinkActive="" routerLink="/auth" class="navbar-desktop__link">
+          <span>Authorize</span>
+        </a>
+      </li>
     </ul>
 
     <!--    Dropdown items  -->
     <div class="navbar-desktop__menu-items navbar-desktop__menu-items--align-right">
+      <div *ngIf="isAuthenticated" class="navbar-desktop__menu-item">
+        <a routerLinkActive="" routerLink="/auth" class="navbar-desktop__link">
+          <span>Logout</span>
+        </a>
+      </div>
       <div class="navbar-desktop__menu-item navbar-desktop__menu-dropdown-item">
         <a class="navbar-desktop__link">
           <span>Configuration</span>

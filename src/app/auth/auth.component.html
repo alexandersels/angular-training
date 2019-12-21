@@ -1,0 +1,36 @@
+<app-alert></app-alert>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<form class="form" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+  <div class="form__row grid-unit-xs--col-12">
+    <label class="grid-unit-xs--col-12" for="email">E-Mail</label>
+    <input class="grid-unit-xs--col-12"
+           type="email"
+           id="email"
+           ngModel
+           name="email"
+           required
+           email>
+  </div>
+  <div class="form__row grid-unit-xs--col-12">
+    <label class="grid-unit-xs--col-12" for="password">Password</label>
+    <input class="grid-unit-xs--col-12"
+           type="password"
+           id="password"
+           ngModel
+           name="password"
+           required
+           minlength="6">
+  </div>
+  <div class="form__row grid-unit-xs--col-12">
+    <button class="form__button--success grid-unit-xs--col-2"
+            type="submit"
+            [disabled]="!authForm.valid">
+      <span>{{isLoginMode ? 'Login' : 'Register'}}</span>
+    </button>
+    <button class="form__button--success grid-unit-xs--col-4"
+            (click)="onSwitchMode()"
+            type="button">
+      <span>{{isLoginMode ? ' Switch to signup' : 'Switch to login'}}</span>
+    </button>
+  </div>
+</form>
