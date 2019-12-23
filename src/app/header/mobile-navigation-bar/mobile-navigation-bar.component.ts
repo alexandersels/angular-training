@@ -8,7 +8,7 @@ import {AuthService} from '../../auth/auth.service';
   templateUrl: './mobile-navigation-bar.component.html',
   styleUrls: ['./mobile-navigation-bar.component.scss']
 })
-export class MobileNavigationBarComponent implements OnInit, OnDestroy{
+export class MobileNavigationBarComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   private userSub: Subscription;
 
@@ -35,6 +35,10 @@ export class MobileNavigationBarComponent implements OnInit, OnDestroy{
     this.dataStorageService.fetchRecipes().subscribe();
   }
 
+  onLogout() {
+    this.authService.logout();
+  }
+
   burgerMenuClicked(): void {
     this.sidebarDisplayed = !this.sidebarDisplayed;
   }
@@ -42,4 +46,5 @@ export class MobileNavigationBarComponent implements OnInit, OnDestroy{
   closeSidebar(): void {
     this.sidebarDisplayed = false;
   }
+
 }

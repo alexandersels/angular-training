@@ -7,14 +7,39 @@ import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.compo
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {RecipesResolverService} from './recipes/recipes-resolver.service';
 import {AuthComponent} from './auth/auth.component';
+import {AuthGuard} from './auth/auth.guard';
 
 const appRoutes: Routes = [
-    {path: 'recipes/new', component: RecipeEditComponent, pathMatch: 'full'},
-    {path: 'recipes/:id/edit', component: RecipeEditComponent, pathMatch: 'full', resolve: [RecipesResolverService]},
-    {path: 'shopping-list', component: ShoppingListComponent, pathMatch: 'full'},
-    {path: '', redirectTo: '/recipes', pathMatch: 'full'},
     {
-      path: 'recipes', component: RecipesComponent, children: [
+      path: 'recipes/new',
+      component: RecipeEditComponent,
+      pathMatch: 'full',
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'recipes/:id/edit',
+      component: RecipeEditComponent,
+      pathMatch: 'full',
+      resolve: [RecipesResolverService],
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'shopping-list',
+      component: ShoppingListComponent,
+      pathMatch: 'full',
+      canActivate: [AuthGuard]
+    },
+    {
+      path: '',
+      redirectTo: '/recipes',
+      pathMatch: 'full',
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'recipes',
+      component: RecipesComponent,
+      canActivate: [AuthGuard],
+      children: [
         {path: '', component: RecipeStartComponent, pathMatch: 'full'},
         {path: ':id', component: RecipeDetailComponent, pathMatch: 'full', resolve: [RecipesResolverService]},
       ]

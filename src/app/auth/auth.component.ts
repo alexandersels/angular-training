@@ -1,22 +1,28 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnDestroy, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthResponseData, AuthService} from './auth.service';
 import {AlertComponent} from '../shared/alert/alert.component';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
+import {PlaceHolderDirective} from '../shared/placeholder/placeholder.directive';
+import {NewAlertComponent} from '../shared/new-alert/new.alert';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent {
+export class AuthComponent implements OnDestroy {
   isLoginMode = false;
   isLoading = false;
+  @ViewChild(PlaceHolderDirective, {static: false}) alertHost: PlaceHolderDirective;
+  private closeSub: Subscription;
 
   @ViewChild(AlertComponent, {static: false}) alertComponent: AlertComponent;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService,
+              private router: Router,
+              private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   onSwitchMode(): void {
@@ -46,11 +52,32 @@ export class AuthComponent {
         this.router.navigate(['/recipes']);
       },
       errorMessage => {
+        this.showErrorAlert(errorMessage);
         this.alertComponent.showErrorMessage(errorMessage);
         this.isLoading = false;
       }
     );
 
     form.reset();
+  }
+
+  private showErrorAlert(errorMessage: string): void {
+    // const newAlertComponent = new NewAlertComponent();
+    const alertCmpFactory = this.componentFactoryResolver.resolveComponentFactory(NewAlertComponent);
+    const hostViewContrainerRef = this.alertHost.viewContainerRef;
+    hostViewContrainerRef.clear();
+
+    const componentRef = hostViewContrainerRef.createComponent(alertCmpFactory);
+    componentRef.instance.message = errorMessage;
+    this.closeSub = componentRef.instance.close.subscribe(() => {
+      this.closeSub.unsubscribe();
+      hostViewContrainerRef.clear();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.closeSub) {
+      this.closeSub.unsubscribe();
+    }
   }
 }

@@ -28,7 +28,7 @@
     <!--    Dropdown items  -->
     <div class="navbar-desktop__menu-items navbar-desktop__menu-items--align-right">
       <div *ngIf="isAuthenticated" class="navbar-desktop__menu-item">
-        <a routerLinkActive="" routerLink="/auth" class="navbar-desktop__link">
+        <a routerLinkActive="" routerLink="/auth" class="navbar-desktop__link" (click)="onLogout">
           <span>Logout</span>
         </a>
       </div>

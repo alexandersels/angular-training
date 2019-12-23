@@ -36,7 +36,7 @@
             <a routerLink="/auth" class="mobile-sidenav__link">Authorize</a>
           </li>
           <li *ngIf="isAuthenticated" class="mobile-sidenav__item">
-            <a routerLink="/auth" class="mobile-sidenav__link">Logout</a>
+            <a routerLink="/auth" class="mobile-sidenav__link" (click)="onLogout()">Logout</a>
           </li>
         </ul>
       </div>

@@ -34,5 +34,9 @@ export class DesktopNavigationBarComponent implements OnInit, OnDestroy {
     this.dataStorageService.fetchRecipes().subscribe();
   }
 
+  onLogout(): void {
+    this.authService.logout();
+  }
+
 
 }

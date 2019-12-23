@@ -39,6 +39,9 @@ import {AuthService} from './auth/auth.service';
 import {LoadingSpinnerComponent} from './shared/loading-spinner/loading-spinner.component';
 import {AlertComponent} from './shared/alert/alert.component';
 import {AuthInterceptorService} from './auth/auth.interceptor.service';
+import {AuthGuard} from './auth/auth.guard';
+import {NewAlertComponent} from './shared/new-alert/new.alert';
+import {PlaceHolderDirective} from './shared/placeholder/placeholder.directive';
 
 const materialModules = [
   MatButtonModule,
@@ -69,7 +72,9 @@ const materialModules = [
     RecipeEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
-    AlertComponent
+    AlertComponent,
+    NewAlertComponent,
+    PlaceHolderDirective
   ],
   imports: [
     BrowserModule,
@@ -85,8 +90,12 @@ const materialModules = [
     DataStorageService,
     RecipesResolverService,
     AuthService,
+    AuthGuard,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    NewAlertComponent
+  ]
 })
 export class AppModule {
 }
