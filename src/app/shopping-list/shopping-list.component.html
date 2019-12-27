@@ -2,7 +2,7 @@
   <div class="shopping-list">
     <h2 class="shopping-list__title">Shopping List</h2>
     <div class="shopping-list__items grid-container">
-      <div *ngFor="let ingredient of ingredients; let i = index"
+      <div *ngFor="let ingredient of (ingredients | async).ingredients; let i = index"
            class="ingredient
            grid-container grid-unit-xs--col-10 grid-unit-s--col-7 grid-unit-l--col-5
            border border--primary-dark

@@ -26,6 +26,8 @@ import {ShoppingListModule} from './shopping-list/shopping-list.module';
 import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './core.module';
 import {AuthModule} from './auth/auth.module';
+import {StoreModule} from '@ngrx/store';
+import {shoppingListReducer} from './shopping-list/store/shopping-list.reducer';
 
 const materialModules = [
   MatButtonModule,
@@ -53,10 +55,11 @@ const materialModules = [
     AppRoutingModule,
     HttpClientModule,
     RecipesModule,
-    ShoppingListModule,
-    SharedModule,
+    AuthModule,
     CoreModule,
-    AuthModule
+    SharedModule,
+    ShoppingListModule,
+    StoreModule.forRoot({shoppingList: shoppingListReducer})
   ],
   bootstrap: [AppComponent],
   entryComponents: [
