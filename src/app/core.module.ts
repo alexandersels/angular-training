@@ -6,12 +6,10 @@ import {AuthService} from './auth/auth.service';
 import {AuthGuard} from './auth/auth.guard';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptorService} from './auth/auth.interceptor.service';
-import {ShoppingListService} from './shopping-list/shopping-list.service';
 
 @NgModule({
   providers: [
     RecipeService,
-    ShoppingListService,
     DataStorageService,
     RecipesResolverService,
     AuthService,
