@@ -1,31 +1,30 @@
-<form class="form margin-top-small" (ngSubmit)="onSubmit(f)" #f="ngForm">
+<form class="form margin-top-small" (ngSubmit)="onSubmit()" [formGroup]="slForm">
 
   <div class="form__row grid-unit-xs--col-12">
     <label class="grid-unit-xs--col-3" for="name">
       <span>Name: </span>
     </label>
-    <input class="grid-unit-xs--col-9" type="text" id="name" name="name" ngModel>
+    <input formControlName="name" class="grid-unit-xs--col-9" type="text" id="name" name="name">
   </div>
 
   <div class="form__row grid-unit-xs--col-12">
     <label class="grid-unit-xs--col-3" for="amount">
       <span>Amount: </span>
     </label>
-    <input class="grid-unit-xs--col-9" type="number" id="amount" name="amount" ngModel required
-           pattern="^[1-9]+[0-9]*$">
+    <input formControlName="amount" class="grid-unit-xs--col-9" type="number" id="amount" name="amount">
   </div>
 
   <div class="form__row grid-unit-xs--col-12">
     <button class="form__button form__button--success grid-unit-xs--col-3"
             type="submit"
-            [disabled]="!f.valid"
-            [ngClass]="{'disabled': !f.valid}">
-      <span>{{editMode ? 'Update' : 'Add'}}</span>
+            [disabled]="!slForm.valid"
+            [ngClass]="{'disabled': !slForm.valid}">
+      <span>{{shouldIngredientBeEdited ? 'Update' : 'Add'}}</span>
     </button>
     <button class="form__button form__button--success grid-unit-xs--col-3"
             type="button"
             (click)="onDelete()"
-            *ngIf="editMode">
+            *ngIf="shouldIngredientBeEdited">
       <span>Delete</span>
     </button>
     <button class="form__button form__button--success grid-unit-xs--col-3"

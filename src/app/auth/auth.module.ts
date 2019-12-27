@@ -12,7 +12,7 @@ import {SharedModule} from '../shared/shared.module';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{path: '', component: AuthComponent}]),
+    RouterModule.forChild([{path: 'auth', component: AuthComponent}]),
     SharedModule
   ]
 })

@@ -1,68 +1,76 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Ingredient} from '../../shared/ingredient.model';
-import {NgForm} from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {Store} from '@ngrx/store';
-import * as ShoppingListActions from '../store/shopping-list.actions';
-import {AppState} from '../../store/app.reducer';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-edit',
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.scss']
 })
-export class ShoppingEditComponent implements OnInit, OnDestroy {
+export class ShoppingEditComponent implements OnChanges, OnInit {
 
-  @ViewChild('f', {static: false}) slForm: NgForm;
+  @Input() ingredient: Ingredient;
 
-  subscription: Subscription;
-  editMode = false;
-  editedItem: Ingredient;
+  @Output() onAddIngredient: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
+  @Output() onEditIngredient: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
 
-  constructor(private store: Store<AppState>) {
+  @Output() onDeleteIngredient: EventEmitter<void> = new EventEmitter<void>();
+  @Output() onClearSelection: EventEmitter<void> = new EventEmitter<void>();
+
+  shouldIngredientBeEdited = false;
+
+  slForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
   }
 
-  ngOnInit() {
-    this.subscription = this.store.select('shoppingList').subscribe(stateData => {
-      if (stateData.editedIngredientIndex > -1) {
-        this.editMode = true;
-        this.editedItem = stateData.editedIngredient;
-        this.slForm.setValue({
-          name: this.editedItem.name,
-          amount: this.editedItem.amount
-        });
-      } else {
-        this.editMode = false;
-      }
+  ngOnInit(): void {
+    this.slForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      amount: ['']
     });
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    this.store.dispatch(new ShoppingListActions.StopEdit());
-  }
-
-  onSubmit(form: NgForm) {
-    const value = form.value;
-    const newIngredient = new Ingredient(value.name, value.amount);
-    if (this.editMode) {
-      this.store.dispatch(
-        new ShoppingListActions.UpdateIngredient(newIngredient));
-    } else {
-      this.store.dispatch(new ShoppingListActions.AddIngredient(newIngredient));
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.ingredient && this.slForm) {
+      this.shouldIngredientBeEdited = this.ingredient !== null;
+      this.slForm.setValue({
+        name: this.ingredient.name,
+        amount: this.ingredient.amount
+      });
     }
-    this.editMode = false;
-    form.reset();
   }
 
-  onClear() {
+  onSubmit() {
+    if (this.slForm.invalid) {
+      return;
+    }
+
+    const value = this.slForm.value;
+    const newIngredient = new Ingredient(value.name, value.amount);
+
+    if (this.shouldIngredientBeEdited) {
+      this.onEditIngredient.emit(newIngredient);
+    } else {
+      this.onAddIngredient.emit(newIngredient);
+    }
+
+    this.shouldIngredientBeEdited = false;
     this.slForm.reset();
-    this.editMode = false;
-    this.store.dispatch(new ShoppingListActions.StopEdit());
   }
 
-  onDelete() {
-    this.store.dispatch(new ShoppingListActions.DeleteIngredient());
-    this.onClear();
+  onClear(): void {
+    this.reset();
+    this.onClearSelection.emit();
+  }
+
+  onDelete(): void {
+    this.reset();
+    this.onDeleteIngredient.emit();
+  }
+
+  private reset(): void {
+    this.slForm.reset();
+    this.shouldIngredientBeEdited = false;
   }
 }
