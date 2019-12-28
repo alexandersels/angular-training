@@ -7,7 +7,6 @@ const authState = createFeatureSelector<AuthState>(authIdentifier);
 
 export const authSelectors = {
   user: createSelector(authState, (state: AuthState) => state.user),
-  errorMessage: createSelector(authState, (state: AuthState) => state.errorMessage),
   isBusyAuthenticating: createSelector(authState, (state: AuthState) => state.busyAuthenticating),
   isAuthenticated: createSelector(authState, (state: AuthState) => state.isAuthenticated)
 };

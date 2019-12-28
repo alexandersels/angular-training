@@ -1,5 +1,6 @@
 import {Action} from '@ngrx/store';
-import {AuthActionTypes} from '../enums/AuthActionTypes';
+import {AuthActionTypes} from '../enums/auth.action.types';
+import {HttpErrorResponse} from '@angular/common/http';
 
 export class LogInSuccessAction implements Action {
   readonly type = AuthActionTypes.LOGIN_SUCCESS;
@@ -11,7 +12,7 @@ export class LogInSuccessAction implements Action {
 export class LogInFailureAction implements Action {
   readonly type = AuthActionTypes.LOGIN_FAILED;
 
-  constructor(public errorMessage: string) {
+  constructor(public errorMessage: HttpErrorResponse) {
   }
 }
 
@@ -29,12 +30,8 @@ export class LogoutAction implements Action {
 export class SignupFailureAction implements Action {
   readonly type = AuthActionTypes.SIGNUP_FAILED;
 
-  constructor(public errorMessage: string) {
+  constructor(public errorMessage: HttpErrorResponse) {
   }
-}
-
-export class ClearLoginErrorMessageAction implements Action {
-  readonly type = AuthActionTypes.CLEAR_LOGIN_ERROR_MESSAGE;
 }
 
 export class SetLoginBusyAction implements Action {
@@ -51,5 +48,4 @@ export type AuthReducerActions =
   | SignupFailureAction
   | LogoutAction
   | SetLoginBusyAction
-  | ClearLoginErrorMessageAction
   ;

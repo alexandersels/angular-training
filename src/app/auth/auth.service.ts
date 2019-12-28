@@ -32,7 +32,7 @@ export class AuthService {
           return new LogInSuccessAction({email: authResponse.email, id: authResponse.localId});
         }),
         catchError((error: HttpErrorResponse) => {
-          return of(new LogInFailureAction(this.getDescriptiveError(error)));
+          return of(new LogInFailureAction(error));
         })
       );
   }
@@ -46,7 +46,7 @@ export class AuthService {
           return new SignupSuccessAction({email: authResonse.email, id: authResonse.idToken});
         }),
         catchError((error: HttpErrorResponse) => {
-          return of(new SignupFailureAction(this.getDescriptiveError(error)));
+          return of(new SignupFailureAction(error));
         })
       );
   }
@@ -60,22 +60,4 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  getDescriptiveError(errorResponse: HttpErrorResponse): string {
-    let errorMessage = 'An unknown error occurred!';
-    if (!errorResponse.error || !errorResponse.error.error) {
-      return errorMessage;
-    }
-    switch (errorResponse.error.error.message) {
-      case 'EMAIL_EXISTS':
-        errorMessage = 'This email exists already';
-        break;
-      case 'EMAIL_NOT_FOUND':
-        errorMessage = 'This email does not exist.';
-        break;
-      case 'INVALID_PASSWORD':
-        errorMessage = 'This password is not correct.';
-        break;
-    }
-    return errorMessage;
-  }
 }

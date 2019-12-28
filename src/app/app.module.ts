@@ -27,10 +27,11 @@ import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './core.module';
 import {AuthModule} from './auth/auth.module';
 import {StoreModule} from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import * as fromApp from './store/app.reducer';
-import { environment as env } from '../environments/environment';
+import {environment as env} from '../environments/environment';
+import {ErrorModule} from './error/error.module';
 
 const materialModules = [
   MatButtonModule,
@@ -43,7 +44,7 @@ const materialModules = [
   MatSidenavModule
 ];
 
-const reduxDevtoolsModule = !env.production ? [StoreDevtoolsModule.instrument({ maxAge: 25 })] : [];
+const reduxDevtoolsModule = !env.production ? [StoreDevtoolsModule.instrument({maxAge: 25})] : [];
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ const reduxDevtoolsModule = !env.production ? [StoreDevtoolsModule.instrument({ 
     AuthModule,
     CoreModule,
     SharedModule,
+    ErrorModule,
     ShoppingListModule,
     StoreModule.forRoot(fromApp.appReducer),
     reduxDevtoolsModule

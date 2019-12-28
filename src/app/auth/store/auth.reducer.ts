@@ -1,6 +1,6 @@
 import {AuthState, initialAuthState} from './auth.state';
 import {AuthReducerActions} from './auth.actions';
-import {AuthActionTypes} from '../enums/AuthActionTypes';
+import {AuthActionTypes} from '../enums/auth.action.types';
 
 export function authReducer(state: AuthState = initialAuthState, action: AuthReducerActions): AuthState {
   switch (action.type) {
@@ -12,7 +12,6 @@ export function authReducer(state: AuthState = initialAuthState, action: AuthRed
           id: action.payload.id,
           email: action.payload.email
         },
-        errorMessage: null,
         busyAuthenticating: false
       };
     }
@@ -20,7 +19,6 @@ export function authReducer(state: AuthState = initialAuthState, action: AuthRed
     case AuthActionTypes.LOGIN_FAILED: {
       return {
         ...state,
-        errorMessage: action.errorMessage,
         busyAuthenticating: false
       };
     }
@@ -33,7 +31,6 @@ export function authReducer(state: AuthState = initialAuthState, action: AuthRed
           id: action.payload.id,
           email: action.payload.email
         },
-        errorMessage: null,
         busyAuthenticating: false
       };
     }
@@ -41,7 +38,6 @@ export function authReducer(state: AuthState = initialAuthState, action: AuthRed
     case AuthActionTypes.SIGNUP_FAILED: {
       return {
         ...state,
-        errorMessage: action.errorMessage,
         busyAuthenticating: false
       };
     }
@@ -58,13 +54,6 @@ export function authReducer(state: AuthState = initialAuthState, action: AuthRed
       return {
         ...state,
         busyAuthenticating: action.loginBusy
-      };
-    }
-
-    case AuthActionTypes.CLEAR_LOGIN_ERROR_MESSAGE: {
-      return {
-        ...state,
-        errorMessage: null
       };
     }
 

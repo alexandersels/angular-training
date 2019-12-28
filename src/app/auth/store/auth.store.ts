@@ -7,7 +7,6 @@ import {Observable} from 'rxjs';
 import {User} from '../models/user.model';
 import {authSelectors} from './auth.selectors';
 import {
-  ClearLoginErrorMessageAction,
   LogInFailureAction,
   LogInSuccessAction,
   LogoutAction,
@@ -15,18 +14,16 @@ import {
   SignupFailureAction,
   SignupSuccessAction
 } from './auth.actions';
+import {ErrorStore} from '../../error/store/error.store';
 
 
 @Injectable()
 export class AuthStore {
 
   constructor(private store: Store<AppState>,
+              private errorStore: ErrorStore,
               private authorizationService: AuthService,
               private router: Router) {
-  }
-
-  get errorMessage(): Observable<string> {
-    return this.store.select(authSelectors.errorMessage);
   }
 
   get user(): Observable<User> {
@@ -46,6 +43,8 @@ export class AuthStore {
     const loginResult: LogInSuccessAction | LogInFailureAction = await this.authorizationService.login(email, password).toPromise();
     if (loginResult instanceof LogInSuccessAction) {
       this.router.navigate(['/recipes']);
+    } else if (loginResult instanceof LogInFailureAction) {
+      this.errorStore.registerError(loginResult.errorMessage);
     }
     this.store.dispatch(loginResult);
   }
@@ -55,6 +54,8 @@ export class AuthStore {
     const signupResult: SignupSuccessAction | SignupFailureAction = await this.authorizationService.signup(email, password).toPromise();
     if (signupResult instanceof SignupSuccessAction) {
       this.router.navigate(['/recipes']);
+    } else if (signupResult instanceof SignupFailureAction) {
+      this.errorStore.registerError(signupResult.errorMessage);
     }
     this.store.dispatch(signupResult);
   }
@@ -62,10 +63,6 @@ export class AuthStore {
   logout(): void {
     this.authorizationService.logout();
     this.store.dispatch(new LogoutAction());
-  }
-
-  clearErrorMessage(): void {
-    this.store.dispatch(new ClearLoginErrorMessageAction());
   }
 
 }

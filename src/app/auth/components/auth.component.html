@@ -1,4 +1,4 @@
-<app-alert [errorMessage]="(errorMessage$|async)" (clearMessage)="onClearMessage()"></app-alert>
+<app-alert></app-alert>
 <app-loading-spinner *ngIf="(isBusyAuthenticating$|async)"></app-loading-spinner>
 <form class="form" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="(isBusyAuthenticating$|async)  === false">
   <div class="form__row grid-unit-xs--col-12">

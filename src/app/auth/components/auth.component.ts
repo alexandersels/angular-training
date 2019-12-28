@@ -13,22 +13,16 @@ export class AuthComponent implements OnInit {
   isLoginMode = false;
 
   isBusyAuthenticating$: Observable<boolean>;
-  errorMessage$: Observable<string>;
 
   constructor(private store: AuthStore) {
   }
 
   ngOnInit(): void {
-    this.errorMessage$ = this.store.errorMessage;
     this.isBusyAuthenticating$ = this.store.isBusyAuthenticating;
   }
 
   onSwitchMode(): void {
     this.isLoginMode = !this.isLoginMode;
-  }
-
-  onClearMessage(): void {
-    this.store.clearErrorMessage();
   }
 
   onSubmit(form: NgForm): void {

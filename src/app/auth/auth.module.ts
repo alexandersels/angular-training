@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
 import {AuthStore} from './store/auth.store';
 import {AuthService} from './auth.service';
+import {ErrorModule} from '../error/error.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {AuthService} from './auth.service';
     CommonModule,
     FormsModule,
     RouterModule.forChild([{path: 'auth', component: AuthComponent}]),
-    SharedModule
+    SharedModule,
+    ErrorModule
   ],
   providers: [
     AuthStore,
