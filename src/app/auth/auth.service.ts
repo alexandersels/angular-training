@@ -2,10 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
-import {Observable, of, throwError} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
-import {Action} from '@ngrx/store';
-import {LogInFailure, LogInSuccess} from './store/auth.actions';
+import {LogInFailureAction, LogInSuccessAction, SignupFailureAction, SignupSuccessAction} from './store/auth.actions';
 
 export interface AuthResponseData {
   kind: string;
@@ -25,16 +24,32 @@ export class AuthService {
               private router: Router) {
   }
 
-  signup(email: string, password: string): Observable<AuthResponseData> {
-    // return this.http.post<AuthResponseData>(
-    //   'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
-    //   {
-    //     email,
-    //     password,
-    //     returnSecureToken: true
-    //   }
-    // ).pipe(catchError(this.handleError), tap(this.handleAuthentication));
-    return null;
+  login(email: string, password: string): Observable<LogInSuccessAction | LogInFailureAction> {
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKey}`;
+    return this.http.post<AuthResponseData>(url, {email, password, returnSecureToken: true})
+      .pipe(
+        map((authResponse: AuthResponseData) => {
+          localStorage.setItem('token', authResponse.idToken);
+          return new LogInSuccessAction({email: authResponse.email, id: authResponse.localId});
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return of(new LogInFailureAction(this.getDescriptiveError(error)));
+        })
+      );
+  }
+
+  signup(email: string, password: string): Observable<SignupSuccessAction | SignupFailureAction> {
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIKey}`;
+    return this.http.post<AuthResponseData>(url, {email, password, returnSecureToken: true})
+      .pipe(
+        map((authResonse: AuthResponseData) => {
+          localStorage.setItem('token', authResonse.idToken);
+          return new SignupSuccessAction({email: authResonse.email, id: authResonse.idToken});
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return of(new SignupFailureAction(this.getDescriptiveError(error)));
+        })
+      );
   }
 
   logout(): void {
@@ -80,39 +95,16 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  login(email: string, password: string): Observable<LogInSuccess | LogInFailure> {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKey}`;
-    return this.http.post<AuthResponseData>(url, {email, password, returnSecureToken: true})
-      .pipe(
-        map(authResponse => {
-          localStorage.setItem('token', authResponse.idToken);
-          return new LogInSuccess({email: authResponse.email, id: authResponse.localId});
-        }),
-        catchError((error: Error) => {
-          return of(new LogInFailure(error.message));
-        })
-      );
-  }
-
   signUp(email: string, password: string): Observable<AuthResponseData> {
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIKey}`;
     return this.http.post<AuthResponseData>(url, {email, password, returnSecureToken: true});
   }
 
-  private handleAuthentication(responseData: AuthResponseData) {
-    // console.log('I am handling the authentication');
-    // const expirationDate = new Date(new Date().getTime() + +responseData.expiresIn * 1000);
-    // // const user$ = new User(responseData.email, responseData.localId, responseData.idToken, expirationDate);
-    // // this.user$.next(user$);
-    // this.autoLogout(+responseData.expiresIn * 1000);
-    // localStorage.setItem('userData', JSON.stringify(user$));
-  }
-
-  private handleError(errorResponse: HttpErrorResponse) {
+  getDescriptiveError(errorResponse: HttpErrorResponse): string {
     console.log('I am handling an error');
     let errorMessage = 'An unknown error occurred!';
     if (!errorResponse.error || !errorResponse.error.error) {
-      return throwError(errorMessage);
+      return errorMessage;
     }
     switch (errorResponse.error.error.message) {
       case 'EMAIL_EXISTS':
@@ -125,6 +117,6 @@ export class AuthService {
         errorMessage = 'This password is not correct.';
         break;
     }
-    return throwError(errorMessage);
+    return errorMessage;
   }
 }

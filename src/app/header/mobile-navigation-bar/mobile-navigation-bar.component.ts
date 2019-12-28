@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DataStorageService} from '../../shared/data-storage.service';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {AuthStore} from '../../auth/store/auth.store';
 
 @Component({
@@ -8,22 +8,16 @@ import {AuthStore} from '../../auth/store/auth.store';
   templateUrl: './mobile-navigation-bar.component.html',
   styleUrls: ['./mobile-navigation-bar.component.scss']
 })
-export class MobileNavigationBarComponent implements OnInit, OnDestroy {
-  isAuthenticated = false;
+export class MobileNavigationBarComponent implements OnInit {
+
+  isAuthenticated$: Observable<boolean>;
   sidebarDisplayed = false;
-  private userSub: Subscription;
 
   constructor(private dataStorageService: DataStorageService, private authStore: AuthStore) {
   }
 
   ngOnInit(): void {
-    this.userSub = this.authStore.user.subscribe(user => {
-      this.isAuthenticated = !!user;
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.userSub.unsubscribe();
+    this.isAuthenticated$ = this.authStore.isAuthenticated;
   }
 
   onSaveData() {

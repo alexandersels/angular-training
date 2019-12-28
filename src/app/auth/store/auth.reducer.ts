@@ -25,6 +25,35 @@ export function authReducer(state: AuthState = initialAuthState, action: AuthRed
       };
     }
 
+    case AuthActionTypes.SIGNUP_SUCCESS: {
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: {
+          id: action.payload.id,
+          email: action.payload.email
+        },
+        errorMessage: null,
+        busyAuthenticating: false
+      };
+    }
+
+    case AuthActionTypes.SIGNUP_FAILED: {
+      return {
+        ...state,
+        errorMessage: action.errorMessage,
+        busyAuthenticating: false
+      };
+    }
+
+    case AuthActionTypes.LOGOUT: {
+      return {
+        ...state,
+        user: null,
+        isAuthenticated: false
+      };
+    }
+
     case AuthActionTypes.SET_LOGIN_BUSY: {
       return {
         ...state,

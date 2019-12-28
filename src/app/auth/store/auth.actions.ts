@@ -1,21 +1,39 @@
 import {Action} from '@ngrx/store';
 import {AuthActionTypes} from '../enums/AuthActionTypes';
 
-export class LogInSuccess implements Action {
+export class LogInSuccessAction implements Action {
   readonly type = AuthActionTypes.LOGIN_SUCCESS;
 
   constructor(public payload: { email: string, id: string }) {
   }
 }
 
-export class LogInFailure implements Action {
+export class LogInFailureAction implements Action {
   readonly type = AuthActionTypes.LOGIN_FAILED;
 
   constructor(public errorMessage: string) {
   }
 }
 
-export class ClearLoginErrorMessage implements Action {
+export class SignupSuccessAction implements Action {
+  readonly type = AuthActionTypes.SIGNUP_SUCCESS;
+
+  constructor(public payload: { email: string, id: string }) {
+  }
+}
+
+export class LogoutAction implements Action {
+  readonly type = AuthActionTypes.LOGOUT;
+}
+
+export class SignupFailureAction implements Action {
+  readonly type = AuthActionTypes.SIGNUP_FAILED;
+
+  constructor(public errorMessage: string) {
+  }
+}
+
+export class ClearLoginErrorMessageAction implements Action {
   readonly type = AuthActionTypes.CLEAR_LOGIN_ERROR_MESSAGE;
 }
 
@@ -27,8 +45,11 @@ export class SetLoginBusyAction implements Action {
 }
 
 export type AuthReducerActions =
-  | LogInSuccess
-  | LogInFailure
+  | LogInSuccessAction
+  | LogInFailureAction
+  | SignupSuccessAction
+  | SignupFailureAction
+  | LogoutAction
   | SetLoginBusyAction
-  | ClearLoginErrorMessage
+  | ClearLoginErrorMessageAction
   ;
