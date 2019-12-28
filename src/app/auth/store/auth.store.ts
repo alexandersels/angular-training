@@ -9,7 +9,8 @@ import {authSelectors} from './auth.selectors';
 import {
   ClearLoginErrorMessageAction,
   LogInFailureAction,
-  LogInSuccessAction, LogoutAction,
+  LogInSuccessAction,
+  LogoutAction,
   SetLoginBusyAction,
   SignupFailureAction,
   SignupSuccessAction
@@ -59,6 +60,7 @@ export class AuthStore {
   }
 
   logout(): void {
+    this.authorizationService.logout();
     this.store.dispatch(new LogoutAction());
   }
 

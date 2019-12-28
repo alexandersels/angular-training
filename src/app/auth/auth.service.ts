@@ -18,7 +18,6 @@ export interface AuthResponseData {
 
 @Injectable()
 export class AuthService {
-  private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient,
               private router: Router) {
@@ -53,55 +52,15 @@ export class AuthService {
   }
 
   logout(): void {
-    // // this.user$.next(null);
-    // this.router.navigate(['/auth']);
-    // localStorage.removeItem('userData');
-    // if (this.tokenExpirationTimer) {
-    //   clearTimeout(this.tokenExpirationTimer);
-    // }
-    // this.tokenExpirationTimer = null;
-  }
-
-  autoLogout(expirationDuration: number) {
-    // this.tokenExpirationTimer = setTimeout(() => {
-    //   this.logout();
-    // }, expirationDuration);
-  }
-
-  autologin() {
-    // const userData: {
-    //   email: string;
-    //   id: string;
-    //   token: string;
-    //   tokenExpirationDate: string;
-    // } = JSON.parse(localStorage.getItem('userData'));
-    // if (!userData) {
-    //   return;
-    // }
-    //
-    // const loadedUser = new User(userData.email,
-    //   userData.id,
-    //   userData.token,
-    //   new Date(userData.tokenExpirationDate));
-    //
-    // if (loadedUser.getToken()) {
-    //   // this.user$.next(loadedUser);
-    //   const expirationDuration = new Date(userData.tokenExpirationDate).getTime() - new Date().getTime();
-    //   this.autoLogout(expirationDuration);
-    // }
+    this.router.navigate(['/auth']);
+    localStorage.removeItem('token');
   }
 
   getToken(): string {
     return localStorage.getItem('token');
   }
 
-  signUp(email: string, password: string): Observable<AuthResponseData> {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIKey}`;
-    return this.http.post<AuthResponseData>(url, {email, password, returnSecureToken: true});
-  }
-
   getDescriptiveError(errorResponse: HttpErrorResponse): string {
-    console.log('I am handling an error');
     let errorMessage = 'An unknown error occurred!';
     if (!errorResponse.error || !errorResponse.error.error) {
       return errorMessage;
