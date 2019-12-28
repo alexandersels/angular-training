@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {catchError, tap} from 'rxjs/operators';
-import {BehaviorSubject, Observable, throwError} from 'rxjs';
-import {User} from './user.model';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
+import {Observable, of, throwError} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
+import {Action} from '@ngrx/store';
+import {LogInFailure, LogInSuccess} from './store/auth.actions';
 
 export interface AuthResponseData {
   kind: string;
@@ -18,87 +19,97 @@ export interface AuthResponseData {
 
 @Injectable()
 export class AuthService {
-  user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient,
               private router: Router) {
   }
 
-  login(email: string, password: string): Observable<AuthResponseData> {
-    return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey,
-      {
-        email,
-        password,
-        returnSecureToken: true
-      }).pipe(catchError(resData => {
-        return this.handleError(resData);
-      }),
-      tap(resData => {
-        this.handleAuthentication(resData);
-      }));
-  }
-
   signup(email: string, password: string): Observable<AuthResponseData> {
-    return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
-      {
-        email,
-        password,
-        returnSecureToken: true
-      }
-    ).pipe(catchError(this.handleError), tap(this.handleAuthentication));
+    // return this.http.post<AuthResponseData>(
+    //   'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
+    //   {
+    //     email,
+    //     password,
+    //     returnSecureToken: true
+    //   }
+    // ).pipe(catchError(this.handleError), tap(this.handleAuthentication));
+    return null;
   }
 
   logout(): void {
-    this.user.next(null);
-    this.router.navigate(['/auth']);
-    localStorage.removeItem('userData');
-    if (this.tokenExpirationTimer) {
-      clearTimeout(this.tokenExpirationTimer);
-    }
-    this.tokenExpirationTimer = null;
+    // // this.user$.next(null);
+    // this.router.navigate(['/auth']);
+    // localStorage.removeItem('userData');
+    // if (this.tokenExpirationTimer) {
+    //   clearTimeout(this.tokenExpirationTimer);
+    // }
+    // this.tokenExpirationTimer = null;
   }
 
   autoLogout(expirationDuration: number) {
-    this.tokenExpirationTimer = setTimeout(() => {
-      this.logout();
-    }, expirationDuration);
+    // this.tokenExpirationTimer = setTimeout(() => {
+    //   this.logout();
+    // }, expirationDuration);
   }
 
   autologin() {
-    const userData: {
-      email: string;
-      id: string;
-      token: string;
-      tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem('userData'));
-    if (!userData) {
-      return;
-    }
+    // const userData: {
+    //   email: string;
+    //   id: string;
+    //   token: string;
+    //   tokenExpirationDate: string;
+    // } = JSON.parse(localStorage.getItem('userData'));
+    // if (!userData) {
+    //   return;
+    // }
+    //
+    // const loadedUser = new User(userData.email,
+    //   userData.id,
+    //   userData.token,
+    //   new Date(userData.tokenExpirationDate));
+    //
+    // if (loadedUser.getToken()) {
+    //   // this.user$.next(loadedUser);
+    //   const expirationDuration = new Date(userData.tokenExpirationDate).getTime() - new Date().getTime();
+    //   this.autoLogout(expirationDuration);
+    // }
+  }
 
-    const loadedUser = new User(userData.email,
-      userData.id,
-      userData.token,
-      new Date(userData.tokenExpirationDate));
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
 
-    if (loadedUser.getToken()) {
-      this.user.next(loadedUser);
-      const expirationDuration = new Date(userData.tokenExpirationDate).getTime() - new Date().getTime();
-      this.autoLogout(expirationDuration);
-    }
+  login(email: string, password: string): Observable<LogInSuccess | LogInFailure> {
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKey}`;
+    return this.http.post<AuthResponseData>(url, {email, password, returnSecureToken: true})
+      .pipe(
+        map(authResponse => {
+          localStorage.setItem('token', authResponse.idToken);
+          return new LogInSuccess({email: authResponse.email, id: authResponse.localId});
+        }),
+        catchError((error: Error) => {
+          return of(new LogInFailure(error.message));
+        })
+      );
+  }
+
+  signUp(email: string, password: string): Observable<AuthResponseData> {
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIKey}`;
+    return this.http.post<AuthResponseData>(url, {email, password, returnSecureToken: true});
   }
 
   private handleAuthentication(responseData: AuthResponseData) {
-    const expirationDate = new Date(new Date().getTime() + +responseData.expiresIn * 1000);
-    const user = new User(responseData.email, responseData.localId, responseData.idToken, expirationDate);
-    this.user.next(user);
-    this.autoLogout(+responseData.expiresIn * 1000);
-    localStorage.setItem('userData', JSON.stringify(user));
+    // console.log('I am handling the authentication');
+    // const expirationDate = new Date(new Date().getTime() + +responseData.expiresIn * 1000);
+    // // const user$ = new User(responseData.email, responseData.localId, responseData.idToken, expirationDate);
+    // // this.user$.next(user$);
+    // this.autoLogout(+responseData.expiresIn * 1000);
+    // localStorage.setItem('userData', JSON.stringify(user$));
   }
 
   private handleError(errorResponse: HttpErrorResponse) {
+    console.log('I am handling an error');
     let errorMessage = 'An unknown error occurred!';
     if (!errorResponse.error || !errorResponse.error.error) {
       return throwError(errorMessage);

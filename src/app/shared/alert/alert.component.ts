@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-alert',
@@ -7,19 +7,14 @@ import {Component} from '@angular/core';
 })
 export class AlertComponent {
 
-  private errorMessage: string;
-  private shouldBeDisplayed = false;
+  @Input() errorMessage: string;
+  @Output() clearMessage: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {
   }
 
-  showErrorMessage(errorMessage: string) {
-    this.errorMessage = errorMessage;
-    this.shouldBeDisplayed = true;
-  }
-
   onBtnClick() {
-    this.shouldBeDisplayed = false;
+    this.clearMessage.emit();
   }
 
 }

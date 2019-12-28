@@ -1,7 +1,6 @@
-<app-alert></app-alert>
-<ng-template appPlaceholder></ng-template>
-<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-<form class="form" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+<app-alert [errorMessage]="(errorMessage$|async)" (clearMessage)="onClearMessage()"></app-alert>
+<app-loading-spinner *ngIf="(isBusyAuthenticating$|async)"></app-loading-spinner>
+<form class="form" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="(isBusyAuthenticating$|async)  === false">
   <div class="form__row grid-unit-xs--col-12">
     <label class="grid-unit-xs--col-12" for="email">E-Mail</label>
     <input class="grid-unit-xs--col-12"

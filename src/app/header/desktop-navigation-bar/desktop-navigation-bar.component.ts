@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DataStorageService} from '../../shared/data-storage.service';
-import {AuthService} from '../../auth/auth.service';
 import {Subscription} from 'rxjs';
+import {AuthStore} from '../../auth/store/auth.store';
 
 @Component({
   selector: 'app-desktop-navigation-bar',
@@ -13,11 +13,11 @@ export class DesktopNavigationBarComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
 
   constructor(private dataStorageService: DataStorageService,
-              private authService: AuthService) {
+              private authStorage: AuthStore) {
   }
 
   ngOnInit(): void {
-    this.userSub = this.authService.user.subscribe(user => {
+    this.userSub = this.authStorage.user.subscribe(user => {
       this.isAuthenticated = !!user;
     });
   }
@@ -35,7 +35,7 @@ export class DesktopNavigationBarComponent implements OnInit, OnDestroy {
   }
 
   onLogout(): void {
-    this.authService.logout();
+    this.authStorage.logout();
   }
 
 

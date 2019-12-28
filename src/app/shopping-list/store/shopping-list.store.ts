@@ -35,4 +35,5 @@ export class ShoppingListStore {
   removeIngredient(): void {
     this.store.dispatch(new ShoppingListActions.DeleteIngredient());
   }
+
 }

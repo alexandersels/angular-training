@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DataStorageService} from '../../shared/data-storage.service';
 import {Subscription} from 'rxjs';
-import {AuthService} from '../../auth/auth.service';
+import {AuthStore} from '../../auth/store/auth.store';
 
 @Component({
   selector: 'app-mobile-navigation-bar',
@@ -10,15 +10,14 @@ import {AuthService} from '../../auth/auth.service';
 })
 export class MobileNavigationBarComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
+  sidebarDisplayed = false;
   private userSub: Subscription;
 
-  sidebarDisplayed = false;
-
-  constructor(private dataStorageService: DataStorageService, private authService: AuthService) {
+  constructor(private dataStorageService: DataStorageService, private authStore: AuthStore) {
   }
 
   ngOnInit(): void {
-    this.userSub = this.authService.user.subscribe(user => {
+    this.userSub = this.authStore.user.subscribe(user => {
       this.isAuthenticated = !!user;
     });
   }
@@ -36,7 +35,7 @@ export class MobileNavigationBarComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-    this.authService.logout();
+    this.authStore.logout();
   }
 
   burgerMenuClicked(): void {
