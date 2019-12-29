@@ -1,14 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
-import {RecipesComponent} from './recipes.component';
-import {RecipeListComponent} from './recipe-list/recipe-list.component';
-import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
-import {RecipeItemComponent} from './recipe-list/recipe-item/recipe-item.component';
-import {RecipeStartComponent} from './recipe-start/recipe-start.component';
-import {RecipeEditComponent} from './recipe-edit/recipe-edit.component';
+import {RecipesComponent} from './components/recipes.component';
+import {RecipeListComponent} from './components/recipe-list/recipe-list.component';
+import {RecipeItemComponent} from './components/recipe-item/recipe-item.component';
+import {RecipeStartComponent} from './components/recipe-start/recipe-start.component';
 import {RecipesRoutingModule} from './recipes-routing.module';
 import {SharedModule} from '../shared/shared.module';
+import {RecipeDetailComponent} from './components/recipe-detail/recipe-detail.component';
+import {RecipeEditComponent} from './components/recipe-edit/recipe-edit.component';
+import {RecipeStore} from './store/recipe.store';
 
 @NgModule({
   declarations: [RecipesComponent,
@@ -21,6 +22,9 @@ import {SharedModule} from '../shared/shared.module';
     RecipesRoutingModule,
     SharedModule,
     ReactiveFormsModule],
+  providers: [
+    RecipeStore
+  ]
 })
 export class RecipesModule {
 }

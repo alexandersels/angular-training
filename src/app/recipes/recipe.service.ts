@@ -1,4 +1,4 @@
-import {Recipe} from './recipe.model';
+import {Recipe} from './models/recipe.model';
 import {Ingredient} from '../shared/ingredient.model';
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
