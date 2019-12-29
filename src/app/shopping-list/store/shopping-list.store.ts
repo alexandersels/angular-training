@@ -4,7 +4,13 @@ import {Ingredient} from '../../shared/ingredient.model';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../store/app.reducer';
 import {shoppingListSelectors} from './shopping-list.selectors';
-import * as ShoppingListActions from './shopping-list.actions';
+import {
+  AddIngredientAction,
+  AddIngredientsAction,
+  DeleteIngredientAction,
+  SelectIngredientAction,
+  UpdateIngredientAction
+} from './shopping-list.actions';
 
 @Injectable()
 export class ShoppingListStore {
@@ -21,19 +27,23 @@ export class ShoppingListStore {
   }
 
   addIngredient(ingredient: Ingredient): void {
-    this.store.dispatch(new ShoppingListActions.AddIngredient(ingredient));
+    this.store.dispatch(new AddIngredientAction(ingredient));
+  }
+
+  addIngredients(ingredients: Ingredient[]): void {
+    this.store.dispatch(new AddIngredientsAction(ingredients));
   }
 
   updateIngredient(ingredient: Ingredient): void {
-    this.store.dispatch(new ShoppingListActions.UpdateIngredient(ingredient));
+    this.store.dispatch(new UpdateIngredientAction(ingredient));
   }
 
   selectIngredient(ingredient: Ingredient): void {
-    this.store.dispatch(new ShoppingListActions.SelectIngredient(ingredient));
+    this.store.dispatch(new SelectIngredientAction(ingredient));
   }
 
   removeIngredient(): void {
-    this.store.dispatch(new ShoppingListActions.DeleteIngredient());
+    this.store.dispatch(new DeleteIngredientAction());
   }
 
 }

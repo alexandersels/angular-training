@@ -9,32 +9,32 @@ export enum ShoppingListAction {
   SELECT_INGREDIENT = 'SELECT_INGREDIENT'
 }
 
-export class AddIngredient implements Action {
+export class AddIngredientAction implements Action {
   readonly type = ShoppingListAction.ADD_INGREDIENT;
 
   constructor(public payload: Ingredient) {
   }
 }
 
-export class AddIngredients implements Action {
+export class AddIngredientsAction implements Action {
   readonly type = ShoppingListAction.ADD_INGREDIENTS;
 
   constructor(public payload: Ingredient[]) {
   }
 }
 
-export class UpdateIngredient implements Action {
+export class UpdateIngredientAction implements Action {
   readonly type = ShoppingListAction.UPDATE_INGREDIENT;
 
   constructor(public payload: Ingredient) {
   }
 }
 
-export class DeleteIngredient implements Action {
+export class DeleteIngredientAction implements Action {
   readonly type = ShoppingListAction.DELETE_INGREDIENT;
 }
 
-export class SelectIngredient implements Action {
+export class SelectIngredientAction implements Action {
   readonly type = ShoppingListAction.SELECT_INGREDIENT;
 
   constructor(public payload: Ingredient) {
@@ -42,8 +42,8 @@ export class SelectIngredient implements Action {
 }
 
 export type ShoppingListActions =
-  | AddIngredient
-  | AddIngredients
-  | UpdateIngredient
-  | DeleteIngredient
-  | SelectIngredient;
+  | AddIngredientAction
+  | AddIngredientsAction
+  | UpdateIngredientAction
+  | DeleteIngredientAction
+  | SelectIngredientAction;
