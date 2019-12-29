@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Ingredient} from '../shared/ingredient.model';
+import {Ingredient} from '../../shared/ingredient.model';
 import {Observable} from 'rxjs';
-import {ShoppingListStore} from './store/shopping-list.store';
+import {ShoppingListStore} from '../store/shopping-list.store';
 
 @Component({
   selector: 'app-shopping-list',

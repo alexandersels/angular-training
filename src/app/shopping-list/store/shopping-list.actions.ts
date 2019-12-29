@@ -1,41 +1,34 @@
 import {Action} from '@ngrx/store';
 import {Ingredient} from '../../shared/ingredient.model';
-
-export enum ShoppingListAction {
-  ADD_INGREDIENT = 'ADD_INGREDIENT',
-  ADD_INGREDIENTS = 'ADD_INGREDIENTS',
-  UPDATE_INGREDIENT = 'UPDATE_INGREDIENT',
-  DELETE_INGREDIENT = 'DELETE_INGREDIENT',
-  SELECT_INGREDIENT = 'SELECT_INGREDIENT'
-}
+import {ShoppingListActionTypes} from '../enums/shopping-list.action.types';
 
 export class AddIngredientAction implements Action {
-  readonly type = ShoppingListAction.ADD_INGREDIENT;
+  readonly type = ShoppingListActionTypes.ADD_INGREDIENT;
 
   constructor(public payload: Ingredient) {
   }
 }
 
 export class AddIngredientsAction implements Action {
-  readonly type = ShoppingListAction.ADD_INGREDIENTS;
+  readonly type = ShoppingListActionTypes.ADD_INGREDIENTS;
 
   constructor(public payload: Ingredient[]) {
   }
 }
 
 export class UpdateIngredientAction implements Action {
-  readonly type = ShoppingListAction.UPDATE_INGREDIENT;
+  readonly type = ShoppingListActionTypes.UPDATE_INGREDIENT;
 
   constructor(public payload: Ingredient) {
   }
 }
 
 export class DeleteIngredientAction implements Action {
-  readonly type = ShoppingListAction.DELETE_INGREDIENT;
+  readonly type = ShoppingListActionTypes.DELETE_INGREDIENT;
 }
 
 export class SelectIngredientAction implements Action {
-  readonly type = ShoppingListAction.SELECT_INGREDIENT;
+  readonly type = ShoppingListActionTypes.SELECT_INGREDIENT;
 
   constructor(public payload: Ingredient) {
   }

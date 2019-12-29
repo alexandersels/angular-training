@@ -1,9 +1,10 @@
-import {ShoppingListAction, ShoppingListActions} from './shopping-list.actions';
+import { ShoppingListActions} from './shopping-list.actions';
 import {initialShoppingListState, ShoppingListState} from './shopping-list.state';
+import {ShoppingListActionTypes} from '../enums/shopping-list.action.types';
 
 export function shoppingListReducer(state: ShoppingListState = initialShoppingListState, action: ShoppingListActions): ShoppingListState {
   switch (action.type) {
-    case ShoppingListAction.ADD_INGREDIENT: {
+    case ShoppingListActionTypes.ADD_INGREDIENT: {
 
       return {
         ...state,
@@ -11,7 +12,7 @@ export function shoppingListReducer(state: ShoppingListState = initialShoppingLi
       };
     }
 
-    case ShoppingListAction.ADD_INGREDIENTS: {
+    case ShoppingListActionTypes.ADD_INGREDIENTS: {
 
       return {
         ...state,
@@ -19,7 +20,7 @@ export function shoppingListReducer(state: ShoppingListState = initialShoppingLi
       };
     }
 
-    case ShoppingListAction.UPDATE_INGREDIENT: {
+    case ShoppingListActionTypes.UPDATE_INGREDIENT: {
       const index = state.ingredients.indexOf(state.selectedIngredient, 0);
       const ingredient = state.ingredients[index];
 
@@ -38,7 +39,7 @@ export function shoppingListReducer(state: ShoppingListState = initialShoppingLi
       };
     }
 
-    case ShoppingListAction.DELETE_INGREDIENT: {
+    case ShoppingListActionTypes.DELETE_INGREDIENT: {
       const index = state.ingredients.indexOf(state.selectedIngredient, 0);
       const ingredients = [...state.ingredients];
       ingredients.splice(index, 1);
@@ -50,7 +51,7 @@ export function shoppingListReducer(state: ShoppingListState = initialShoppingLi
       };
     }
 
-    case ShoppingListAction.SELECT_INGREDIENT: {
+    case ShoppingListActionTypes.SELECT_INGREDIENT: {
 
       return {
         ...state,
