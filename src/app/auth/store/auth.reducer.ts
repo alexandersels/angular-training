@@ -50,6 +50,27 @@ export function authReducer(state: AuthState = initialAuthState, action: AuthRed
       };
     }
 
+    case AuthActionTypes.AUTOLOGIN_AVAILABLE: {
+      return {
+        ...state,
+        user: {
+          email: action.payload.email,
+          id: action.payload.id
+        },
+        busyAuthenticating: false,
+        isAuthenticated: true
+      };
+    }
+
+    case AuthActionTypes.AUTOLOGIN_NOT_AVAILABLE: {
+      return {
+        ...state,
+        user: null,
+        isAuthenticated: false,
+        busyAuthenticating: false
+      };
+    }
+
     case AuthActionTypes.SET_LOGIN_BUSY: {
       return {
         ...state,

@@ -1,9 +1,10 @@
 import {Recipe} from './models/recipe.model';
 import {Ingredient} from '../shared/ingredient.model';
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
-import {RecipeStore} from './store/recipe.store';
+import {Observable, of, Subject} from 'rxjs';
 import {ShoppingListStore} from '../shopping-list/store/shopping-list.store';
+import {catchError, map} from 'rxjs/operators';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 @Injectable()
 export class RecipeService {
@@ -13,7 +14,43 @@ export class RecipeService {
   private recipes: Recipe[] = [];
 
   constructor(private shoppingListStore: ShoppingListStore,
-              private recipeStore: RecipeStore) {
+              private http: HttpClient) {
+  }
+
+  fetchRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>('https://scampi-38a65.firebaseio.com/recipes.json')
+      .pipe(
+        map(recipes => {
+          return recipes.map(recipe => {
+            return {
+              ...recipe,
+              ingredients: recipe.ingredients ? recipe.ingredients : []
+            };
+          });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          console.log(error.message);
+          return of(null);
+        })
+      );
+  }
+
+  fetchRecipe(id: number): Observable<Recipe> {
+    return this.http.get<Recipe>(`https://scampi-38a65.firebaseio.com/recipes/${id}.json`)
+      .pipe(
+        map((recipe: Recipe) => {
+            console.log('Fetching recipe');
+            return {
+              ...recipe,
+              ingredients: recipe.ingredients ? recipe.ingredients : []
+            };
+          },
+          catchError((error: HttpErrorResponse) => {
+            console.log(error.message);
+            return of(null);
+          })
+        )
+      );
   }
 
   public getRecipes(): Recipe[] {

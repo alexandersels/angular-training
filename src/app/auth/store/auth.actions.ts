@@ -34,6 +34,17 @@ export class SignupFailureAction implements Action {
   }
 }
 
+export class AutologinAvailable implements Action {
+  readonly type = AuthActionTypes.AUTOLOGIN_AVAILABLE;
+
+  constructor(public payload: { token: string, id: string, email: string }) {
+  }
+}
+
+export class AutologinNotAvailable implements Action {
+  readonly type = AuthActionTypes.AUTOLOGIN_NOT_AVAILABLE;
+}
+
 export class SetLoginBusyAction implements Action {
   readonly type = AuthActionTypes.SET_LOGIN_BUSY;
 
@@ -47,5 +58,7 @@ export type AuthReducerActions =
   | SignupSuccessAction
   | SignupFailureAction
   | LogoutAction
+  | AutologinAvailable
+  | AutologinNotAvailable
   | SetLoginBusyAction
   ;

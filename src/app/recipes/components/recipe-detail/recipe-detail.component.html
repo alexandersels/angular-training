@@ -2,7 +2,7 @@
   <div class="recipe-details__container grid-16-column">
     <div class="recipe-summary__information">
       <div class="margin-bottom-small">
-        <h1>{{recipe.name}}</h1>
+        <h1>{{(selectedRecipe$|async).name}}</h1>
       </div>
       <div class="recipe-summary__rating">
         <i class="fas fa-star"></i>
@@ -17,7 +17,7 @@
         <span>11 photos</span>
       </div>
       <div class="recipe-summary__description">
-        <p>{{recipe.description}}</p>
+        <p>{{(selectedRecipe$|async).description}}</p>
       </div>
       <div class="recipe-summary__actions-wrapper">
         <ul class="recipe-summary__actions">
@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="recipe-summary__image-wrapper">
-      <img [src]=recipe.imagePath alt={{recipe.name}} class="recipe-summary__image">
+      <img [src]=(selectedRecipe$|async).imagePath [alt]=(selectedRecipe$|async).name class="recipe-summary__image">
     </div>
     <div class="recipe-ingredients grid-responsive-col-span-16">
       <div class="recipe-ingredients__container">
@@ -48,7 +48,7 @@
           <h2>Ingredients</h2>
         </div>
         <ul class="recipe-ingredients__list">
-          <li *ngFor="let ingredient of recipe.ingredients" class="recipe-ingredients__item">
+          <li *ngFor="let ingredient of (selectedRecipe$ | async).ingredients" class="recipe-ingredients__item">
             <span>{{ingredient.name}} - {{ingredient.amount}}</span>
           </li>
         </ul>

@@ -10,6 +10,7 @@ import {SharedModule} from '../shared/shared.module';
 import {RecipeDetailComponent} from './components/recipe-detail/recipe-detail.component';
 import {RecipeEditComponent} from './components/recipe-edit/recipe-edit.component';
 import {RecipeStore} from './store/recipe.store';
+import {RecipeService} from './recipe.service';
 
 @NgModule({
   declarations: [RecipesComponent,
@@ -23,7 +24,8 @@ import {RecipeStore} from './store/recipe.store';
     SharedModule,
     ReactiveFormsModule],
   providers: [
-    RecipeStore
+    RecipeStore,
+    RecipeService
   ]
 })
 export class RecipesModule {

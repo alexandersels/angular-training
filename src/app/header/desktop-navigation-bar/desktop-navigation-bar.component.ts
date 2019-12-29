@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DataStorageService} from '../../shared/data-storage.service';
 import {Observable, Subscription} from 'rxjs';
 import {AuthStore} from '../../auth/store/auth.store';
+import {RecipeStore} from '../../recipes/store/recipe.store';
 
 @Component({
   selector: 'app-desktop-navigation-bar',
@@ -12,7 +13,7 @@ export class DesktopNavigationBarComponent implements OnInit {
 
   isAuthenticated$: Observable<boolean>;
 
-  constructor(private dataStorageService: DataStorageService,
+  constructor(private recipeStore: RecipeStore,
               private authStorage: AuthStore) {
   }
 
@@ -21,11 +22,11 @@ export class DesktopNavigationBarComponent implements OnInit {
   }
 
   onSaveData() {
-    this.dataStorageService.storeRecipes();
+    // this.dataStorageService.storeRecipes();
   }
 
   onFetchData() {
-    this.dataStorageService.fetchRecipes().subscribe();
+    this.recipeStore.fetchRecipeList();
   }
 
   onLogout(): void {

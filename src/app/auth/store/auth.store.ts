@@ -7,6 +7,8 @@ import {Observable} from 'rxjs';
 import {User} from '../models/user.model';
 import {authSelectors} from './auth.selectors';
 import {
+  AutologinAvailable,
+  AutologinNotAvailable,
   LogInFailureAction,
   LogInSuccessAction,
   LogoutAction,
@@ -63,6 +65,11 @@ export class AuthStore {
   logout(): void {
     this.authorizationService.logout();
     this.store.dispatch(new LogoutAction());
+  }
+
+  autologin(): void {
+    const autologinResult: AutologinNotAvailable | AutologinAvailable = this.authorizationService.autologin();
+    this.store.dispatch(autologinResult);
   }
 
 }

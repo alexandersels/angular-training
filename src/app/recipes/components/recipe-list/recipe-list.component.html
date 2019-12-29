@@ -4,7 +4,7 @@
   </div>
 
   <div class="recipes__container grid-container">
-    <app-recipe-item *ngFor="let recipeElement of recipes; let i = index"
+    <app-recipe-item *ngFor="let recipeElement of (recipes | async); let i = index"
                      [recipe]="recipeElement"
                      [index]="i"
                      class="grid-unit-xs--col-12 grid-unit-s--col-6 grid-unit-m--col-4 grid-unit-l--col-3">

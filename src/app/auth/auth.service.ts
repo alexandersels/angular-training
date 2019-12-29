@@ -4,7 +4,14 @@ import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
 import {Observable, of} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
-import {LogInFailureAction, LogInSuccessAction, SignupFailureAction, SignupSuccessAction} from './store/auth.actions';
+import {
+  AutologinNotAvailable,
+  AutologinAvailable,
+  LogInFailureAction,
+  LogInSuccessAction,
+  SignupFailureAction,
+  SignupSuccessAction
+} from './store/auth.actions';
 
 export interface AuthResponseData {
   kind: string;
@@ -29,6 +36,9 @@ export class AuthService {
       .pipe(
         map((authResponse: AuthResponseData) => {
           localStorage.setItem('token', authResponse.idToken);
+          localStorage.setItem('id', authResponse.localId);
+          localStorage.setItem('email', authResponse.email);
+
           return new LogInSuccessAction({email: authResponse.email, id: authResponse.localId});
         }),
         catchError((error: HttpErrorResponse) => {
@@ -54,6 +64,28 @@ export class AuthService {
   logout(): void {
     this.router.navigate(['/auth']);
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
+  }
+
+  autologin(): AutologinAvailable | AutologinNotAvailable {
+    if (!localStorage.getItem('token')) {
+      return new AutologinNotAvailable();
+    }
+
+    if (!localStorage.getItem('id')) {
+      return new AutologinNotAvailable();
+    }
+
+    if (!localStorage.getItem('email')) {
+      return new AutologinNotAvailable();
+    }
+
+    const token = localStorage.getItem('token');
+    const id = localStorage.getItem('id');
+    const email = localStorage.getItem('email');
+
+    return new AutologinAvailable({token, id, email});
   }
 
   getToken(): string {

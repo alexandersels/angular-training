@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Recipe} from '../../models/recipe.model';
-import {RecipeService} from '../../recipe.service';
+import {Observable} from 'rxjs';
+import {RecipeStore} from '../../store/recipe.store';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -10,43 +11,36 @@ import {RecipeService} from '../../recipe.service';
 })
 export class RecipeDetailComponent implements OnInit {
 
-  recipe: Recipe;
-  id: number;
+  selectedRecipe$: Observable<Recipe>;
 
-  constructor(private recipeService: RecipeService,
+  constructor(private recipeStore: RecipeStore,
               private route: ActivatedRoute,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.id = +params.id;
-          console.log(this.id);
-          this.recipe = this.recipeService.getRecipe(this.id);
-        }
-      );
+    this.selectedRecipe$ = this.recipeStore.selectedRecipe;
+    console.log(this.selectedRecipe$);
   }
 
   onAddToShoppingList(): void {
-    this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+    // this.recipeService.addIngredientsToShoppingList(this.selectedRecipe$.ingredients);
   }
 
   onEditRecipe(): void {
-    this.router.navigate(['recipes', this.id, 'edit']);
+    // this.router.navigate(['recipes', this.id, 'edit']);
   }
 
   onDeleteRecipe(): void {
-    this.recipeService.deleteRecipe(this.id);
-    this.router.navigate(['/recipes']);
+    // this.recipeService.deleteRecipe(this.id);
+    // this.router.navigate(['/recipes']);
   }
 
   public directionClicked(event): void {
-    if (!event.currentTarget.classList.contains('recipe-directions__item--clicked')) {
-      event.currentTarget.classList.add('recipe-directions__item--clicked');
+    if (!event.currentTarget.classList.contains('selectedRecipe$-directions__item--clicked')) {
+      event.currentTarget.classList.add('selectedRecipe$-directions__item--clicked');
     } else {
-      event.currentTarget.classList.remove('recipe-directions__item--clicked');
+      event.currentTarget.classList.remove('selectedRecipe$-directions__item--clicked');
     }
   }
 }
