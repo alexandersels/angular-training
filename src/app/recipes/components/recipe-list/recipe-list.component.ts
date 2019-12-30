@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Recipe} from '../../models/recipe.model';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {RecipeStore} from '../../store/recipe.store';
 
@@ -10,11 +10,11 @@ import {RecipeStore} from '../../store/recipe.store';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit {
+
   recipes: Observable<Recipe[]>;
 
   constructor(private recipeStore: RecipeStore,
-              private router: Router,
-              private route: ActivatedRoute) {
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -23,7 +23,6 @@ export class RecipeListComponent implements OnInit {
 
   onNewRecipe() {
     this.router.navigate(['recipes', 'new']);
-    // this.router.navigate(['new'], {relativeTo: this.route});
   }
 
 }

@@ -5,8 +5,8 @@ import {environment} from '../../environments/environment';
 import {Observable, of} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {
-  AutologinNotAvailable,
   AutologinAvailable,
+  AutologinNotAvailable,
   LogInFailureAction,
   LogInSuccessAction,
   SignupFailureAction,
@@ -26,6 +26,8 @@ export interface AuthResponseData {
 @Injectable()
 export class AuthService {
 
+  private tokenExpirationTimer: any;
+
   constructor(private http: HttpClient,
               private router: Router) {
   }
@@ -35,10 +37,7 @@ export class AuthService {
     return this.http.post<AuthResponseData>(url, {email, password, returnSecureToken: true})
       .pipe(
         map((authResponse: AuthResponseData) => {
-          localStorage.setItem('token', authResponse.idToken);
-          localStorage.setItem('id', authResponse.localId);
-          localStorage.setItem('email', authResponse.email);
-
+          this.setLocalStorage(authResponse);
           return new LogInSuccessAction({email: authResponse.email, id: authResponse.localId});
         }),
         catchError((error: HttpErrorResponse) => {
@@ -51,9 +50,9 @@ export class AuthService {
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIKey}`;
     return this.http.post<AuthResponseData>(url, {email, password, returnSecureToken: true})
       .pipe(
-        map((authResonse: AuthResponseData) => {
-          localStorage.setItem('token', authResonse.idToken);
-          return new SignupSuccessAction({email: authResonse.email, id: authResonse.idToken});
+        map((authResponse: AuthResponseData) => {
+          this.setLocalStorage(authResponse);
+          return new SignupSuccessAction({email: authResponse.email, id: authResponse.idToken});
         }),
         catchError((error: HttpErrorResponse) => {
           return of(new SignupFailureAction(error));
@@ -63,27 +62,29 @@ export class AuthService {
 
   logout(): void {
     this.router.navigate(['/auth']);
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    localStorage.removeItem('email');
+    this.resetLocalStorage();
   }
 
   autologin(): AutologinAvailable | AutologinNotAvailable {
-    if (!localStorage.getItem('token')) {
-      return new AutologinNotAvailable();
-    }
-
-    if (!localStorage.getItem('id')) {
-      return new AutologinNotAvailable();
-    }
-
-    if (!localStorage.getItem('email')) {
+    if (!localStorage.getItem('token')
+      || !localStorage.getItem('id')
+      || !localStorage.getItem('email')
+      || !localStorage.getItem('expires')) {
       return new AutologinNotAvailable();
     }
 
     const token = localStorage.getItem('token');
     const id = localStorage.getItem('id');
     const email = localStorage.getItem('email');
+    const expires = +localStorage.getItem('expires');
+
+    const expirationDate = new Date();
+    expirationDate.setTime(expires);
+
+    if (expirationDate < new Date()) {
+      this.resetLocalStorage();
+      return new AutologinNotAvailable();
+    }
 
     return new AutologinAvailable({token, id, email});
   }
@@ -92,4 +93,20 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  setLocalStorage(authResponse: AuthResponseData) {
+    const currentDateTime = new Date();
+    currentDateTime.setSeconds(new Date().getSeconds() + +authResponse.expiresIn);
+
+    localStorage.setItem('token', authResponse.idToken);
+    localStorage.setItem('id', authResponse.localId);
+    localStorage.setItem('email', authResponse.email);
+    localStorage.setItem('expires', currentDateTime.getTime() + '');
+  }
+
+  resetLocalStorage() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
+    localStorage.removeItem('expires');
+  }
 }

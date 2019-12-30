@@ -29,7 +29,6 @@ export class RecipeService {
           });
         }),
         catchError((error: HttpErrorResponse) => {
-          console.log(error.message);
           return of(null);
         })
       );
@@ -39,14 +38,12 @@ export class RecipeService {
     return this.http.get<Recipe>(`https://scampi-38a65.firebaseio.com/recipes/${id}.json`)
       .pipe(
         map((recipe: Recipe) => {
-            console.log('Fetching recipe');
             return {
               ...recipe,
               ingredients: recipe.ingredients ? recipe.ingredients : []
             };
           },
           catchError((error: HttpErrorResponse) => {
-            console.log(error.message);
             return of(null);
           })
         )

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Recipe} from '../../models/recipe.model';
 import {Observable} from 'rxjs';
 import {RecipeStore} from '../../store/recipe.store';
@@ -20,7 +20,8 @@ export class RecipeDetailComponent implements OnInit {
 
   ngOnInit() {
     this.selectedRecipe$ = this.recipeStore.selectedRecipe;
-    console.log(this.selectedRecipe$);
+    const id = +this.route.snapshot.params.id;
+    this.recipeStore.fetchRecipe(id);
   }
 
   onAddToShoppingList(): void {
