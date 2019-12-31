@@ -27,6 +27,20 @@ export function recipeReducer(state: RecipeState = initialRecipeState, action: r
     }
 
     case RecipeActionTypes.ADD: {
+      const updatedRecipes = [...state.recipes, action.recipe];
+      return {
+        ...state,
+        recipes: updatedRecipes
+      };
+    }
+
+    case RecipeActionTypes.ADD_SUCCESS: {
+      return {
+        ...state
+      };
+    }
+
+    case RecipeActionTypes.ADD_FAILED: {
       return {
         ...state
       };
@@ -38,7 +52,13 @@ export function recipeReducer(state: RecipeState = initialRecipeState, action: r
       };
     }
 
-    case RecipeActionTypes.DELETE: {
+    case RecipeActionTypes.DELETE_SUCCESS: {
+      return {
+        ...state
+      };
+    }
+
+    case RecipeActionTypes.DELETE_FAILED: {
       return {
         ...state
       };

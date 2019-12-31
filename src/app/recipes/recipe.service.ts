@@ -1,10 +1,11 @@
 import {Recipe} from './models/recipe.model';
-import {Ingredient} from '../shared/ingredient.model';
+import {Ingredient} from '../ingredients/modules/ingredient.model';
 import {Injectable} from '@angular/core';
-import {Observable, of, Subject} from 'rxjs';
+import {from, Observable, of, Subject} from 'rxjs';
 import {ShoppingListStore} from '../shopping-list/store/shopping-list.store';
 import {catchError, map} from 'rxjs/operators';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {AngularFirestore, DocumentData, DocumentSnapshot, QuerySnapshot} from '@angular/fire/firestore';
+import {RecipeAddFailedAction, RecipeAddSuccessAction, RecipeDeleteFailedAction, RecipeDeleteSuccessAction} from './store/recipe.actions';
 
 @Injectable()
 export class RecipeService {
@@ -14,40 +15,63 @@ export class RecipeService {
   private recipes: Recipe[] = [];
 
   constructor(private shoppingListStore: ShoppingListStore,
-              private http: HttpClient) {
+              private afs: AngularFirestore) {
   }
 
   fetchRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>('https://scampi-38a65.firebaseio.com/recipes.json')
+    return this.afs.collection<Recipe>('recipes')
+      .get()
       .pipe(
-        map(recipes => {
-          return recipes.map(recipe => {
-            return {
-              ...recipe,
-              ingredients: recipe.ingredients ? recipe.ingredients : []
-            };
+        map((actions: QuerySnapshot<DocumentData>) => {
+          const data = [];
+          actions.forEach((documentData: DocumentData) => {
+            const recipe = documentData.data() as Recipe;
+            data.push(recipe);
           });
+          return data;
         }),
-        catchError((error: HttpErrorResponse) => {
+        catchError(error => {
+          console.log(error);
           return of(null);
         })
       );
   }
 
-  fetchRecipe(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(`https://scampi-38a65.firebaseio.com/recipes/${id}.json`)
+  fetchRecipe(id: string): Observable<Recipe> {
+    return this.afs.doc<Recipe>(`recipes/${id}`)
+      .get()
       .pipe(
-        map((recipe: Recipe) => {
-            return {
-              ...recipe,
-              ingredients: recipe.ingredients ? recipe.ingredients : []
-            };
-          },
-          catchError((error: HttpErrorResponse) => {
-            return of(null);
-          })
-        )
+        map((snapshot: DocumentSnapshot<DocumentData>) => {
+            return snapshot.data() as Recipe;
+          }
+        ), catchError(error => {
+          console.log(error);
+          return of(null);
+        })
       );
+  }
+
+  addRecipe(recipe: Recipe): Observable<RecipeAddSuccessAction | RecipeAddFailedAction> {
+    const id = this.afs.createId();
+    recipe.id = id;
+
+    return from(
+      this.afs.collection('recipes').doc(id).set(recipe.asObject())
+        .then(() => {
+          return new RecipeAddSuccessAction();
+        }).catch(() => {
+        return new RecipeAddFailedAction();
+      }));
+  }
+
+  deleteRecipe(id: string): Observable<RecipeDeleteSuccessAction | RecipeDeleteFailedAction> {
+    return from(
+      this.afs.collection('recipes').doc(id).delete().then(() => {
+        return new RecipeDeleteSuccessAction();
+      }).catch(() => {
+        return new RecipeDeleteFailedAction();
+      })
+    );
   }
 
   public getRecipes(): Recipe[] {
@@ -62,18 +86,8 @@ export class RecipeService {
     this.shoppingListStore.addIngredients(ingredients);
   }
 
-  addRecipe(recipe: Recipe) {
-    this.recipes.push(recipe);
-    this.recipesChanged.next(this.recipes.slice());
-  }
-
   updateRecipe(index: number, newRecipe: Recipe) {
     this.recipes[index] = newRecipe;
-    this.recipesChanged.next(this.recipes.slice());
-  }
-
-  deleteRecipe(index: number) {
-    this.recipes.splice(index, 1);
     this.recipesChanged.next(this.recipes.slice());
   }
 

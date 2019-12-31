@@ -11,14 +11,15 @@ import {RecipeStore} from '../../store/recipe.store';
 })
 export class RecipeListComponent implements OnInit {
 
-  recipes: Observable<Recipe[]>;
+  recipes$: Observable<Recipe[]>;
 
   constructor(private recipeStore: RecipeStore,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.recipes = this.recipeStore.recipes;
+    this.recipes$ = this.recipeStore.recipes;
+    this.recipeStore.fetchRecipeList();
   }
 
   onNewRecipe() {

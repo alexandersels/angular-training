@@ -2,10 +2,6 @@ import {Action} from '@ngrx/store';
 import {RecipeActionTypes} from '../enums/recipe.action.types';
 import {Recipe} from '../models/recipe.model';
 
-export class AddRecipeAction implements Action {
-  readonly type = RecipeActionTypes.ADD;
-}
-
 export class FetchRecipeList implements Action {
   readonly type = RecipeActionTypes.FETCH_RECIPE_LIST;
 
@@ -27,8 +23,28 @@ export class SelectRecipeAction implements Action {
   }
 }
 
-export class DeleteRecipeAction implements Action {
-  readonly type = RecipeActionTypes.DELETE;
+export class AddRecipeAction implements Action {
+  readonly type = RecipeActionTypes.ADD;
+
+  constructor(public recipe: Recipe) {
+  }
+}
+
+export class RecipeAddSuccessAction implements Action {
+  readonly type = RecipeActionTypes.ADD_SUCCESS;
+}
+
+export class RecipeAddFailedAction implements Action {
+  readonly type = RecipeActionTypes.ADD_FAILED;
+}
+
+export class RecipeDeleteSuccessAction implements Action {
+  readonly type = RecipeActionTypes.DELETE_SUCCESS;
+}
+
+
+export class RecipeDeleteFailedAction implements Action {
+  readonly type = RecipeActionTypes.DELETE_FAILED;
 }
 
 export class UpdateRecipeAction implements Action {
@@ -37,9 +53,12 @@ export class UpdateRecipeAction implements Action {
 
 export type recipeActionTypes =
   | AddRecipeAction
+  | RecipeAddSuccessAction
+  | RecipeAddFailedAction
   | FetchRecipeList
   | FetchRecipe
   | SelectRecipeAction
-  | DeleteRecipeAction
+  | RecipeDeleteFailedAction
+  | RecipeDeleteSuccessAction
   | UpdateRecipeAction
   ;

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {Ingredient} from '../../shared/ingredient.model';
+import {Ingredient} from '../../ingredients/modules/ingredient.model';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 
 @Component({

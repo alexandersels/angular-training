@@ -25,18 +25,19 @@ export class DataStorageService {
   }
 
   public fetchRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>('https://scampi-38a65.firebaseio.com/recipes.json')
-      .pipe(
-        map(recipes => {
-          return recipes.map(recipe => {
-            return {
-              ...recipe,
-              ingredients: recipe.ingredients ? recipe.ingredients : []
-            };
-          });
-        }),
-        tap(recipes => {
-          this.recipeService.setRecipes(recipes);
-        }));
+    return null;
+    // return this.http.get<Recipe[]>('https://scampi-38a65.firebaseio.com/recipes.json')
+    //   .pipe(
+    //     map(recipes => {
+    //       return recipes.map(recipe => {
+    //         return {
+    //           ...recipe,
+    //           ingredients: recipe.ingredients ? recipe.ingredients : []
+    //         };
+    //       });
+    //     }),
+    //     tap(recipes => {
+    //       this.recipeService.setRecipes(recipes);
+    //     }));
   }
 }

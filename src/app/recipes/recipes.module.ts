@@ -11,6 +11,8 @@ import {RecipeDetailComponent} from './components/recipe-detail/recipe-detail.co
 import {RecipeEditComponent} from './components/recipe-edit/recipe-edit.component';
 import {RecipeStore} from './store/recipe.store';
 import {RecipeService} from './recipe.service';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {RecipeDetailResolver} from './components/recipe-detail/recipe-detail.resolver';
 
 @NgModule({
   declarations: [RecipesComponent,
@@ -25,7 +27,9 @@ import {RecipeService} from './recipe.service';
     ReactiveFormsModule],
   providers: [
     RecipeStore,
-    RecipeService
+    RecipeService,
+    AngularFirestore,
+    RecipeDetailResolver
   ]
 })
 export class RecipesModule {

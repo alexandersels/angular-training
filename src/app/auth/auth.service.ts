@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<LogInSuccessAction | LogInFailureAction> {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKey}`;
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseConfig.apiKey}`;
     return this.http.post<AuthResponseData>(url, {email, password, returnSecureToken: true})
       .pipe(
         map((authResponse: AuthResponseData) => {
@@ -47,7 +47,7 @@ export class AuthService {
   }
 
   signup(email: string, password: string): Observable<SignupSuccessAction | SignupFailureAction> {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIKey}`;
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`;
     return this.http.post<AuthResponseData>(url, {email, password, returnSecureToken: true})
       .pipe(
         map((authResponse: AuthResponseData) => {

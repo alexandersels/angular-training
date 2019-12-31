@@ -3,10 +3,10 @@
     <h2>Available Recipes</h2>
   </div>
 
-  <div class="recipes__container grid-container">
-    <app-recipe-item *ngFor="let recipeElement of (recipes | async); let i = index"
-                     [recipe]="recipeElement"
-                     [index]="i"
+  <div *ngIf="(recipes$ | async) as recipes" class="recipes__container grid-container">
+    <app-recipe-item *ngFor="let recipe of recipes;"
+                     [recipe]="recipe"
+                     [index]="recipe.id"
                      class="grid-unit-xs--col-12 grid-unit-s--col-6 grid-unit-m--col-4 grid-unit-l--col-3">
     </app-recipe-item>
   </div>

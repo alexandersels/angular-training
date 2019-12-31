@@ -30,8 +30,9 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import * as fromApp from './store/app.reducer';
-import {environment as env} from '../environments/environment';
+import {environment, environment as env} from '../environments/environment';
 import {ErrorModule} from './error/error.module';
+import {AngularFireModule} from '@angular/fire';
 
 const materialModules = [
   MatButtonModule,
@@ -67,7 +68,8 @@ const reduxDevtoolsModule = !env.production ? [StoreDevtoolsModule.instrument({m
     ErrorModule,
     ShoppingListModule,
     StoreModule.forRoot(fromApp.appReducer),
-    reduxDevtoolsModule
+    reduxDevtoolsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   bootstrap: [AppComponent],
   entryComponents: [

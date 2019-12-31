@@ -20,8 +20,6 @@ export class RecipeDetailComponent implements OnInit {
 
   ngOnInit() {
     this.selectedRecipe$ = this.recipeStore.selectedRecipe;
-    const id = +this.route.snapshot.params.id;
-    this.recipeStore.fetchRecipe(id);
   }
 
   onAddToShoppingList(): void {
@@ -29,19 +27,19 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onEditRecipe(): void {
-    // this.router.navigate(['recipes', this.id, 'edit']);
+    // this.router.navigate(['recipes$', this.id, 'edit']);
   }
 
-  onDeleteRecipe(): void {
-    // this.recipeService.deleteRecipe(this.id);
-    // this.router.navigate(['/recipes']);
+  onDeleteRecipe(id: string): void {
+    this.recipeStore.deleteRecipe(id);
+    this.router.navigate(['/recipes']);
   }
 
   public directionClicked(event): void {
-    if (!event.currentTarget.classList.contains('selectedRecipe$-directions__item--clicked')) {
-      event.currentTarget.classList.add('selectedRecipe$-directions__item--clicked');
+    if (!event.currentTarget.classList.contains('recipe-directions__item--clicked')) {
+      event.currentTarget.classList.add('recipe-directions__item--clicked');
     } else {
-      event.currentTarget.classList.remove('selectedRecipe$-directions__item--clicked');
+      event.currentTarget.classList.remove('recipe-directions__item--clicked');
     }
   }
 }

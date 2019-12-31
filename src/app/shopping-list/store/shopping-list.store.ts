@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Ingredient} from '../../shared/ingredient.model';
+import {Ingredient} from '../../ingredients/modules/ingredient.model';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../store/app.reducer';
 import {shoppingListSelectors} from './shopping-list.selectors';

@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {Ingredient} from '../../shared/ingredient.model';
+import {Ingredient} from '../../ingredients/modules/ingredient.model';
 import {ShoppingListActionTypes} from '../enums/shopping-list.action.types';
 
 export class AddIngredientAction implements Action {
