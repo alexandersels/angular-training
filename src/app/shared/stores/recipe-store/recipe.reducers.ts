@@ -1,6 +1,6 @@
 import {initialRecipeState, RecipeState} from './recipe.state';
 import {recipeActionTypes} from './recipe.actions';
-import {RecipeActionTypes} from '../../../recipe-list/enums/recipe.action.types';
+import {RecipeActionTypes} from '../../enums/recipe.action.types';
 
 export function recipeReducer(state: RecipeState = initialRecipeState, action: recipeActionTypes): RecipeState {
   switch (action.type) {

@@ -19,11 +19,11 @@ export class RecipeAddPageComponent implements OnInit {
 
   onRecipeAdd(recipe: Recipe) {
     this.recipeAddService.addRecipe(recipe);
-    this.router.navigate(['/recipe-list']);
+    this.router.navigate(['/recipes']);
   }
 
   onRecipeAddCanceled() {
-    this.router.navigate(['/recipe-list']);
+    this.router.navigate(['/recipes']);
   }
 
 }

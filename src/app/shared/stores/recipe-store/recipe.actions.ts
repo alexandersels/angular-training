@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {RecipeActionTypes} from '../../../recipe-list/enums/recipe.action.types';
+import {RecipeActionTypes} from '../../enums/recipe.action.types';
 import {Recipe} from '../../models/recipe.model';
 
 export class FetchRecipeList implements Action {

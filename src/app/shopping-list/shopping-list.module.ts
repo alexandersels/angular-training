@@ -5,7 +5,6 @@ import {RouterModule} from '@angular/router';
 import {ShoppingListRoutingModule} from './shopping-list-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
-import {CoreModule} from '../core.module';
 import {ShoppingListStore} from './store/shopping-list.store';
 
 @NgModule({
@@ -16,8 +15,7 @@ import {ShoppingListStore} from './store/shopping-list.store';
     ReactiveFormsModule,
     RouterModule,
     ShoppingListRoutingModule,
-    SharedModule,
-    CoreModule],
+    SharedModule],
   providers: [
     ShoppingListStore,
   ]

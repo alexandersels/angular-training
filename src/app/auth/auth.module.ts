@@ -7,6 +7,7 @@ import {SharedModule} from '../shared/shared.module';
 import {AuthStore} from './store/auth.store';
 import {AuthService} from './auth.service';
 import {ErrorModule} from '../error/error.module';
+import {AuthGuard} from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {ErrorModule} from '../error/error.module';
   providers: [
     AuthStore,
     AuthService,
+    AuthGuard
   ]
 })
 export class AuthModule {

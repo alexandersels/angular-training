@@ -24,7 +24,6 @@ import {NewAlertComponent} from './shared/components/new-alert/new.alert';
 import {RecipesModule} from './recipe-list/recipes.module';
 import {ShoppingListModule} from './shopping-list/shopping-list.module';
 import {SharedModule} from './shared/shared.module';
-import {CoreModule} from './core.module';
 import {AuthModule} from './auth/auth.module';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
@@ -67,7 +66,6 @@ const reduxDevtoolsModule = !env.production ? [StoreDevtoolsModule.instrument({m
     RecipeEditModule,
     RecipesModule,
     AuthModule,
-    CoreModule,
     SharedModule,
     ErrorModule,
     ShoppingListModule,

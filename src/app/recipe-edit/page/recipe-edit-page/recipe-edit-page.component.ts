@@ -27,10 +27,10 @@ export class RecipeEditPageComponent implements OnInit {
 
   async onUpdateRecipe(recipe: Recipe): Promise<void> {
     await this.recipeStore.updateRecipe(this.id, recipe);
-    this.router.navigate(['/recipe-list']);
+    this.router.navigate(['/recipes']);
   }
 
   onUpdatedCancelled() {
-    this.router.navigate(['/recipe-list']);
+    this.router.navigate(['/recipes']);
   }
 }

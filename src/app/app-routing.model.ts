@@ -5,7 +5,7 @@ import {AuthGuard} from './auth/auth.guard';
 const appRoutes: Routes = [
     {
       path: '',
-      redirectTo: '/recipe-list',
+      redirectTo: '/recipes',
       pathMatch: 'full',
       canActivate: [AuthGuard]
     }
