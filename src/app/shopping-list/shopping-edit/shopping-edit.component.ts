@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Ingredient} from '../../ingredients/modules/ingredient.model';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -47,7 +47,7 @@ export class ShoppingEditComponent implements OnChanges, OnInit {
     }
 
     const value = this.slForm.value;
-    const newIngredient = new Ingredient(value.name, value.amount);
+    const newIngredient = new Ingredient({name: value.name, amount: value.amount});
 
     if (this.shouldIngredientBeEdited) {
       this.onEditIngredient.emit(newIngredient);

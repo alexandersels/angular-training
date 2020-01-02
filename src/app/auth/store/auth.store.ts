@@ -44,7 +44,7 @@ export class AuthStore {
     this.store.dispatch(new SetLoginBusyAction(true));
     const loginResult: LogInSuccessAction | LogInFailureAction = await this.authorizationService.login(email, password).toPromise();
     if (loginResult instanceof LogInSuccessAction) {
-      this.router.navigate(['/recipes']);
+      this.router.navigate(['/recipe-list']);
     } else if (loginResult instanceof LogInFailureAction) {
       this.errorStore.registerError(loginResult.errorMessage);
     }
@@ -55,7 +55,7 @@ export class AuthStore {
     this.store.dispatch(new SetLoginBusyAction(true));
     const signupResult: SignupSuccessAction | SignupFailureAction = await this.authorizationService.signup(email, password).toPromise();
     if (signupResult instanceof SignupSuccessAction) {
-      this.router.navigate(['/recipes']);
+      this.router.navigate(['/recipe-list']);
     } else if (signupResult instanceof SignupFailureAction) {
       this.errorStore.registerError(signupResult.errorMessage);
     }

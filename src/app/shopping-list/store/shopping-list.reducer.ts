@@ -1,6 +1,7 @@
-import { ShoppingListActions} from './shopping-list.actions';
+import {ShoppingListActions} from './shopping-list.actions';
 import {initialShoppingListState, ShoppingListState} from './shopping-list.state';
 import {ShoppingListActionTypes} from '../enums/shopping-list.action.types';
+import {Ingredient} from '../../ingredients/modules/ingredient.model';
 
 export function shoppingListReducer(state: ShoppingListState = initialShoppingListState, action: ShoppingListActions): ShoppingListState {
   switch (action.type) {
@@ -24,10 +25,10 @@ export function shoppingListReducer(state: ShoppingListState = initialShoppingLi
       const index = state.ingredients.indexOf(state.selectedIngredient, 0);
       const ingredient = state.ingredients[index];
 
-      const updatedIngredient = {
+      const updatedIngredient = new Ingredient({
         ...ingredient,
         ...action.payload
-      };
+      });
 
       const updatedIngredients = [...state.ingredients];
       updatedIngredients[index] = updatedIngredient;

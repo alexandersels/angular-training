@@ -1,0 +1,21 @@
+<section class="max-width-content margin-top-medium margin-bottom-medium">
+  <div class="recipes">
+    <div class="recipes__title">
+      <h2>Available Recipes</h2>
+    </div>
+
+    <div *ngIf="(recipes$ | async) as recipes" class="recipes__container grid-container">
+      <app-recipe-item *ngFor="let recipe of recipes;"
+                       [recipe]="recipe"
+                       (itemSelected)="onRecipeSelected($event)"
+                       class="grid-unit-xs--col-12 grid-unit-s--col-6 grid-unit-m--col-4 grid-unit-l--col-3">
+      </app-recipe-item>
+    </div>
+    <button (click)="onNewRecipe()">New Recipe</button>
+    <app-recipe-detail *ngIf="(selectedRecipe$ | async) as selectedRecipe"
+                       [selectedRecipe]="selectedRecipe"
+                       (recipeDeleted)="onRecipeDeleted($event)">
+    </app-recipe-detail>
+  </div>
+</section>
+

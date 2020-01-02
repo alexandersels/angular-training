@@ -20,8 +20,8 @@ import {
 } from '@angular/material';
 import {AppRoutingModule} from './app-routing.model';
 import {HttpClientModule} from '@angular/common/http';
-import {NewAlertComponent} from './shared/new-alert/new.alert';
-import {RecipesModule} from './recipes/recipes.module';
+import {NewAlertComponent} from './shared/components/new-alert/new.alert';
+import {RecipesModule} from './recipe-list/recipes.module';
 import {ShoppingListModule} from './shopping-list/shopping-list.module';
 import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './core.module';
@@ -33,6 +33,8 @@ import * as fromApp from './store/app.reducer';
 import {environment, environment as env} from '../environments/environment';
 import {ErrorModule} from './error/error.module';
 import {AngularFireModule} from '@angular/fire';
+import {RecipeAddModule} from './recipe-add/recipe-add.module';
+import {RecipeEditModule} from './recipe-edit/recipe-edit.module';
 
 const materialModules = [
   MatButtonModule,
@@ -61,6 +63,8 @@ const reduxDevtoolsModule = !env.production ? [StoreDevtoolsModule.instrument({m
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    RecipeAddModule,
+    RecipeEditModule,
     RecipesModule,
     AuthModule,
     CoreModule,

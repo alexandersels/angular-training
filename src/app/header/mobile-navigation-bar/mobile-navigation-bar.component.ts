@@ -1,8 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DataStorageService} from '../../shared/data-storage.service';
-import {Observable, Subscription} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
 import {AuthStore} from '../../auth/store/auth.store';
-import {RecipeStore} from '../../recipes/store/recipe.store';
+import {RecipeStore} from '../../shared/stores/recipe-store/recipe.store';
 
 @Component({
   selector: 'app-mobile-navigation-bar',

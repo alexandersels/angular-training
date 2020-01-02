@@ -1,0 +1,85 @@
+<div class="recipe-details margin-top-medium">
+  <div class="recipe-details__container grid-16-column">
+    <div class="recipe-summary__information">
+      <div class="margin-bottom-small">
+        <h1>{{selectedRecipe?.name}}</h1>
+      </div>
+      <div class="recipe-summary__rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <div class="recipe-summary__kpi-list">
+        <span>280 made it</span>
+        <span>59 reviews</span>
+        <span>11 photos</span>
+      </div>
+      <div class="recipe-summary__description">
+        <p>{{selectedRecipe?.description}}</p>
+      </div>
+      <div class="recipe-summary__actions-wrapper">
+        <ul class="recipe-summary__actions">
+          <li class="recipe-summary__action border border--primary-dark">
+            <a class="recipe-summary__action-link" (click)="onAddToShoppingList()">
+              To Shopping List
+            </a>
+          </li>
+          <li class="recipe-summary__action border border--primary-dark">
+            <a (click)=onEditRecipe(selectedRecipe?.id) class="recipe-summary__action-link">
+              Edit Recipe
+            </a>
+          </li>
+          <li class="recipe-summary__action border border--primary-dark">
+            <a (click)=onDeleteRecipe(selectedRecipe?.id) class="recipe-summary__action-link">
+              Delete Recipe
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="recipe-summary__image-wrapper">
+      <img [src]=selectedRecipe?.imagePath [alt]=selectedRecipe?.name class="recipe-summary__image">
+    </div>
+    <div class="recipe-ingredients grid-responsive-col-span-16">
+      <div class="recipe-ingredients__container">
+        <div class="margin-bottom-small margin-top-small center-content">
+          <h2>Ingredients</h2>
+        </div>
+        <ul class="recipe-ingredients__list">
+          <li *ngFor="let ingredient of selectedRecipe?.ingredients" class="recipe-ingredients__item">
+            <span>{{ingredient.name}} - {{ingredient.amount}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="recipe-directions grid-responsive-col-span-16">
+      <div class="recipe-directions__container">
+        <div class="margin-top-small margin-bottom-small center-content">
+          <h2>Directions</h2>
+        </div>
+        <ol class="recipe-directions__list">
+          <li (click)="directionClicked($event)" class="recipe-directions__item">
+            <span>Preheat oven to 400 degrees F (200 degrees C). Place the butter or margarine in 9x13 inch glass baking dish, and place in oven until butter melts.</span>
+          </li>
+          <li (click)="directionClicked($event)" class="recipe-directions__item">
+            <span>Bring a large pot of lightly salted water to a boil. Add pasta and cook for 8 to 10 minutes or until al dente. Drain, and transfer to a large serving bowl.</span>
+          </li>
+          <li (click)="directionClicked($event)" class="recipe-directions__item">
+            <span>Stir the shrimp, garlic, and lemon juice into the melted butter. Return dish to oven. Bake for 3 minutes. Remove from the oven, and mix in parsley; continue baking until shrimp are opaque, about 2 minutes longer. Season with salt and pepper.</span>
+          </li>
+          <li (click)="directionClicked($event)" class="recipe-directions__item">
+            <span>Spoon the shrimp and butter sauce over the linguini, and toss to coat the pasta. Serve immediately.</span>
+          </li>
+          <li (click)="directionClicked($event)" class="recipe-directions__item">
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deserunt ducimus incidunt perspiciatis quod repudiandae. Ab accusamus assumenda at consectetur consequatur cumque est molestiae. At ea maxime perferendis quasi tenetur.</span>
+          </li>
+          <li (click)="directionClicked($event)" class="recipe-directions__item">
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deserunt ducimus incidunt perspiciatis quod repudiandae. Ab accusamus assumenda at consectetur consequatur cumque est molestiae. At ea maxime perferendis quasi tenetur.</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>

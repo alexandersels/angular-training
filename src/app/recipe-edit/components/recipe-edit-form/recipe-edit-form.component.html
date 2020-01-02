@@ -1,0 +1,73 @@
+<form [formGroup]="slForm" (ngSubmit)="onSubmit()" class="form">
+  <div class="form__row grid-unit-xs--col-12">
+    <label class="grid-unit-xs--col-12 grid-unit-s--col-3" for="name">
+      <span>Name: </span>
+    </label>
+    <input formControlName="name"
+           class="grid-unit-xs--col-12 grid-unit-s--col-9"
+           type="text"
+           id="name">
+  </div>
+
+  <div class="form__row grid-unit-xs--col-12">
+    <label class="grid-unit-xs--col-12 grid-unit-s--col-3" for="imagePath">
+      <span>Image URL: </span>
+    </label>
+    <input formControlName="imagePath"
+           class="grid-unit-xs--col-12 grid-unit-s--col-9"
+           type="text"
+           id="imagePath"
+           #imagePath>
+  </div>
+
+  <div class="form__row grid-unit-xs--col-12">
+    <img [src]="imagePath.value" class="grid-unit-xs--col-12 grid-unit-s--col-3">
+  </div>
+
+  <div class="form__row grid-unit-xs--col-12">
+    <label class="grid-unit-xs--col-12 grid-unit-s--col-3" for="description">
+      <span>Description: </span>
+    </label>
+    <textarea formControlName="description"
+              class="grid-unit-xs--col-12  grid-unit-s--col-9"
+              id="description"
+              rows="6">
+    </textarea>
+  </div>
+
+  <div formArrayName="ingredients" class="form__row grid-unit-xs--col-12"
+       *ngFor="let ingredient of getControls(); let i = index">
+    <div class="form__row grid-unit-xs--col-12" [formGroupName]="i">
+      <input class="grid-unit-xs--col-6" type="text" formControlName="name">
+      <input class="grid-unit-xs--col-3" type="number" formControlName="amount">
+      <div class="flex-end grid-unit-xs--col-3">
+        <button class="form__button--success" type="button" (click)="onDelete(i)">
+          <span>Delete</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="form__row grid-unit-xs--col-12">
+    <div class="flex-end grid-unit-xs--col-12">
+      <button (click)="onAddIngredient()"
+              class="form__button--success"
+              type="button">
+        <span>Add Ingredient</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="form__row grid-unit-xs--col-12">
+    <button class="form__button--success grid-unit-xs--col-2"
+            type="submit"
+            [disabled]="!slForm.valid">
+      <span>Save</span>
+    </button>
+    <button class="form__button--success grid-unit-xs--col-2"
+            type="button"
+            (click)="onCancel()">
+      <span>Cancel</span>
+    </button>
+  </div>
+</form>

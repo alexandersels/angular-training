@@ -1,0 +1,10 @@
+<section class="max-width-content margin-top-medium margin-bottom-medium">
+  <div class="recipe-edit__wrapper">
+    <app-recipe-edit-form
+      *ngIf="selectedRecipe$ | async as recipe"
+      [selectedRecipe]="recipe"
+      (updateRecipe)="onUpdateRecipe($event)"
+      (updatedRecipeCanceled)="onUpdatedCancelled()"
+    ></app-recipe-edit-form>
+  </div>
+</section>

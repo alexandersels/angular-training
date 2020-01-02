@@ -6,6 +6,9 @@ export interface ShoppingListState {
 }
 
 export const initialShoppingListState: ShoppingListState = {
-  ingredients: [new Ingredient('Apples', 5), new Ingredient('Tomatoes', 10)],
+  ingredients: [
+    new Ingredient({name: 'Apples', amount: 5}),
+    new Ingredient({name: 'Tomatoes', amount: 10})
+  ],
   selectedIngredient: null,
 };

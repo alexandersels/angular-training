@@ -1,9 +1,8 @@
 import {NgModule} from '@angular/core';
-import {AlertComponent} from '../error/components/alert.component';
-import {NewAlertComponent} from './new-alert/new.alert';
-import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.component';
-import {PlaceHolderDirective} from './placeholder/placeholder.directive';
-import {DropdownDirective} from './dropdown.directive';
+import {NewAlertComponent} from './components/new-alert/new.alert';
+import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spinner.component';
+import {PlaceHolderDirective} from './components/placeholder/placeholder.directive';
+import {DropdownDirective} from './directives/dropdown.directive';
 import {CommonModule} from '@angular/common';
 
 @NgModule({
